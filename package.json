@@ -1,0 +1,24 @@
+{
+  "name": "enogwe",
+  "version": "0.0.0-development",
+  "description": "Wordpress theme for victorenogwe.me",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/victor-enogwe/enogwe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victor-enogwe/enogwe/issues"
+  },
+  "homepage": "https://github.com/victor-enogwe/enogwe#readme",
+  "devDependencies": {
+    "semantic-release": "^15.13.12"
+  }
+}

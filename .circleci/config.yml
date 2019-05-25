@@ -1,0 +1,10 @@
+version: 2.1
+defaults: &defaults
+    docker:
+        - image: circleci/php:7.1-node-browsers
+jobs:
+    build:
+        <<: *defaults
+        steps:
+            - checkout
+
