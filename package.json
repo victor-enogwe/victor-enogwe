@@ -1,0 +1,20 @@
+{
+  "name": "enogwe",
+  "version": "1.0.0",
+  "description": "Wordpress theme for victorenogwe.me",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victor-enogwe/enogwe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victor-enogwe/enogwe/issues"
+  },
+  "homepage": "https://github.com/victor-enogwe/enogwe#readme"
+}
