@@ -1,6 +1,5 @@
 version: 2.1
 defaults: &defaults
-    working_directory: /wordpress
     docker:
         - image: circleci/php:7.1-node-browsers
 jobs:
