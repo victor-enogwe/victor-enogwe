@@ -3,6 +3,17 @@ defaults: &defaults
     docker:
         - image: circleci/php:7.1-node-browsers
 jobs:
+    version:
+        docker:
+            - image: 'circleci/node:latest'
+        steps:
+            - checkout
+            - run:
+                name: install
+                command: npm install
+            - run:
+                name: release
+                command: npm run semantic-release || true
     build:
         <<: *defaults
         steps:
