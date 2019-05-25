@@ -1,6 +1,6 @@
 deployment:
     tasks:
-        - export DEPLOY_PATH=/home/victore1/public_html/lib/src/enogwe/
+        - export DEPLOY_PATH=/home/victore1/public_html/lib/src/enogwe
         - /bin/cp -R ./vendor $DEPLOYPATH
         - /bin/cp -R ./lib $DEPLOYPATH
         - /bin/cp functions.php $DEPLOYPATH
