@@ -1,9 +1,7 @@
 ---
 deployment:
     tasks:
-        - export DEPLOYPATH=$HOME/public_html/lib/src/enogwe
-        - /bin/cp -r assets/* $DEPLOYPATH
-        - /bin/cp -r lib $DEPLOYPATH
-        - /bin/cp -r vendor $DEPLOYPATH
-        - /bin/cp functions.php $DEPLOYPATH
-        - /bin/cp style.css $DEPLOYPATH
+        - export DEPLOYPATH=$HOME/public_html/lib/src/enogwe/
+        - /bin/rm -Rf $DEPLOYPATH
+        - /bin/mkdir $DEPLOYPATH
+        - /usr/bin/rsync -a --delete --include="style.css" --include="functions.php" --include="assets" --include="lib" --include="vendor" $HOME/repositories/enogwe/ $DEPLOYPATH
