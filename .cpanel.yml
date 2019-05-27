@@ -1,7 +1,7 @@
 ---
 deployment:
     tasks:
-        - export DEPLOYPATH=$HOME/public_html/lib/src
+        - export DEPLOYPATH=$HOME/public_html/lib/src/enogwe
         - /bin/cp -r assets/* $DEPLOYPATH
         - /bin/cp -r lib $DEPLOYPATH
         - /bin/cp -r vendor $DEPLOYPATH
