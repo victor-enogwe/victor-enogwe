@@ -1,5 +1,7 @@
 *.log
+enogwe.zip
 
 /node_modules/
 /vendor/*
 !/vendor/composer
+/theme/
