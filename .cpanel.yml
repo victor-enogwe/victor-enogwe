@@ -1,12 +1,10 @@
 ---
 deployment:
     tasks:
-        - export $REPOPATH=$HOME/repositories/enogwe/
-        - export DEPLOYPATH=$HOME/public_html/lib/src/enogwe/
-        - /bin/rm -Rf $DEPLOYPATH
-        - /bin/mkdir $DEPLOYPATH
-        - /bin/cp -R $REPOPATH/assets/ $DEPLOYPATH
-        - /bin/cp -R $REPOPATH/lib/ $DEPLOYPATH
-        - /bin/cp -R $REPOPATH/vendor/ $DEPLOYPATH
-        - /bin/cp functions.php $DEPLOYPATH
-        - /bin/cp style.css $DEPLOYPATH
+        - /bin/rm -Rf $THEME_DIR
+        - /bin/mkdir $THEME_DIR
+        - /bin/cp -R $REPO_DIR/assets/ $THEME_DIR
+        - /bin/cp -R $REPOPATH/lib/ $THEME_DIR
+        - /bin/cp -R $REPOPATH/vendor/ $THEME_DIR
+        - /bin/cp functions.php $THEME_DIR
+        - /bin/cp style.css $THEME_DIR
