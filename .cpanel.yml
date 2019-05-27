@@ -1,7 +1,0 @@
-deployment:
-    tasks:
-        - /bin/source .env
-        - /bin/cp -R ./vendor/* $DEPLOYPATH
-        - /bin/cp -R ./lib/* $DEPLOYPATH
-        - /bin/cp functions.php $DEPLOYPATH
-        -  /bin/cp style.css $DEPLOYPATH
