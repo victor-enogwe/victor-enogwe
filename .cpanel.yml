@@ -1,8 +1,9 @@
+---
 deployment:
     tasks:
-        - export DEPLOYPATH=$abshomedir/public_html/lib/src
+        - export DEPLOYPATH=$HOME/public_html/lib/src
         - /bin/cp -r assets/* $DEPLOYPATH
-        - /bin/cp -r lib/* $DEPLOYPATH
-        - /bin/cp -r vendor/* $DEPLOYPATH
+        - /bin/cp -r lib $DEPLOYPATH
+        - /bin/cp -r vendor $DEPLOYPATH
         - /bin/cp functions.php $DEPLOYPATH
         - /bin/cp style.css $DEPLOYPATH
