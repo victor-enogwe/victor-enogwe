@@ -6,9 +6,9 @@ defaultsNode: &defaultsNode
     working_directory: ~/enogwe_node
     docker:
         - image: circleci/node:10
-defaultsGithub: &defaultsGithub
-    docker:
-      - image: cibuilds/github:0.10
+defaultsGit: &defaultsGit
+    machine:
+      enabled: true
 restoreCacheNode: &restoreCacheNode
     keys:
         - enogwe-node-cache-{{ checksum "package.json" }}
@@ -45,7 +45,7 @@ jobs:
                 name: release
                 command: npx semantic-release
     deploy:
-        <<: *defaultsGithub
+        <<: *defaultsGit
         steps:
             -  checkout
             - add_ssh_keys:
