@@ -60,17 +60,11 @@ jobs:
                     #  Add cPanel remotes
                     git remote add cpanel $GIT_REMOTE
                     git remote -v
-            - run:
-                name: Commit the changes to git
-                command: |
-                    # Add all code, including ignored artifacts
-                    git add .
-                    # Include build number in commit message
-                    git commit --message="Deploying CircleCI build $CIRCLE_BUILD_NUM to cPanel master"
             -  run:
                 name: push to cpanel
                 command: |
                     # push to cpanel
+                    git checkout master
                     git push cpanel master
 workflows:
     version: 2
