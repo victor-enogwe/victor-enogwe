@@ -54,6 +54,7 @@ jobs:
             -  run:
                 name: Push to cpanel
                 command: |
+                    echo $GIT_FINGERPRINT
                     #  Add user
                     git config --global user.email $GIT_EMAIL
                     git config --global user.name $GIT_USER
