@@ -1,10 +1,10 @@
 ---
 deployment:
     tasks:
-        - rm -Rf $THEME_DIR;
-        - mkdir $THEME_DIR;
-        - cp -R $REPO_DIR/assets/ $THEME_DIR;
-        - cp -R $REPO_DIR/vendor/ $THEME_DIR;
-        - cp -R $REPO_DIR/lib/ $THEME_DIR;
-        - cp -R $REPO_DIR/functions.php $THEME_DIR;
-        - cp -R $REPO_DIR/style.css $THEME_DIR;
+        - /bin/rm -Rf $THEME_DIR;
+        - /bin/mkdir $THEME_DIR;
+        - /bin/cp -R $REPO_DIR/assets/ $THEME_DIR;
+        - /bin/cp -R $REPO_DIR/vendor/ $THEME_DIR;
+        - /bin/cp -R $REPO_DIR/lib/ $THEME_DIR;
+        - /bin/cp -R $REPO_DIR/functions.php $THEME_DIR;
+        - /bin/cp -R $REPO_DIR/style.css $THEME_DIR;
