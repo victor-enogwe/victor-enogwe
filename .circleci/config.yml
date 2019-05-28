@@ -6,7 +6,7 @@ defaultsNode: &defaultsNode
     working_directory: ~/enogwe_node
     docker:
         - image: circleci/node:10
-defaultsRelease: &defaultsRelease
+defaultsGithub: &defaultsGithub
     docker:
       - image: cibuilds/github:0.10
 restoreCacheNode: &restoreCacheNode
@@ -44,20 +44,42 @@ jobs:
             - run:
                 name: release
                 command: npx semantic-release
+    deploy:
+        <<: *defaultsGithub
+        steps:
+            -  checkout
+            - add_ssh_keys:
+                fingerprints:
+                    - $GIT_FINGERPRINT
+            -  run:
+                name: Push to cpanel
+                command: |
+                    #  Add user
+                    git config --global user.email $GIT_EMAIL
+                    git config --global user.name $GIT_USER
+                    #  Add cPanel remotes
+                    git remote add cpanel $GIT_REMOTE
+                    git remote -v
+                    # push to cpanel
+                    git push cpanel master
 workflows:
     version: 2
-    build-test-release:
+    build-test-release-deploy:
         jobs:
-        - build
-        - test:
-            requires:
-                - build
-        - release:
-            requires:
-                - test
-            filters:
-                branches:
-                    only:
-                        - master
+            - build
+            - test:
+                requires:
+                    - build
+            - deploy:
+                requires:
+                    - test
+            - release:
+                requires:
+                    - test
+                filters:
+                    branches:
+                        only:
+                            - master
+
 
 
