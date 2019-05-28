@@ -1,4 +1,4 @@
 ---
 deployment:
     tasks:
-        - $HOME/deploy.sh
+        - /bin/sh $HOME/deploy.sh
