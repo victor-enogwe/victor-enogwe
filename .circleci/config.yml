@@ -50,11 +50,10 @@ jobs:
             -  checkout
             - add_ssh_keys:
                 fingerprints:
-                    - $GIT_FINGERPRINT
+                    - "db:72:52:03:0a:86:ac:d4:90:80:9b:81:5d:82:d3:80"
             -  run:
                 name: Push to cpanel
                 command: |
-                    echo $GIT_FINGERPRINT
                     #  Add user
                     git config --global user.email $GIT_EMAIL
                     git config --global user.name $GIT_USER
