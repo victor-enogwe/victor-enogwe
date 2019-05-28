@@ -64,7 +64,6 @@ jobs:
                 name: push to cpanel
                 command: |
                     # push to cpanel
-                    git checkout master
                     git push cpanel master
 workflows:
     version: 2
@@ -74,12 +73,16 @@ workflows:
             - test:
                 requires:
                     - build
-            - deploy:
-                requires:
-                    - test
             - release:
                 requires:
                     - test
+                filters:
+                    branches:
+                        only:
+                            - master
+            - deploy:
+                requires:
+                    - release
                 filters:
                     branches:
                         only:
