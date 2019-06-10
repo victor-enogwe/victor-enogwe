@@ -5,8 +5,6 @@
         "jsx": "react",
         "paths": { "*": ["types/*"] },
         "strict": true,
-        "rootDir": "ts",
-        "outDir": "./public/js",
         "sourceMap": true,
         "declaration": false,
         "esModuleInterop": true,
@@ -17,6 +15,7 @@
         "strictPropertyInitialization": false,
         "noImplicitReturns": true,
         "noImplicitThis": true,
+        "resolveJsonModule": true,
         "noImplicitAny": true,
         "removeComments": true,
         "strictNullChecks": true,
@@ -28,5 +27,11 @@
             "es2018",
             "dom"
         ]
-    }
+    },
+    "exclude": [
+        "node_modules",
+        "assets",
+        "vendor",
+        "covearge"
+    ]
 }

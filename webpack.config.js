@@ -3,17 +3,23 @@ const path = require('path');
 const ExtractText = require('extract-text-webpack-plugin');
 const BrowserSync = require('browser-sync-webpack-plugin');
 const bsConfig = require('./bs-config');
+const Terser = require("terser-webpack-plugin");
+const EnogwePack = require('./EnogwePackPlugin');
 
 const debug = process.env.NODE_ENV !== 'production';
-const themeZipFile = 'enogwe.zip';
-const themePaths = ['./lib', './assets', './vendor/composer', './functions.php', 'style.css'];
-const wpDependencies = ['components', 'element', 'blocks', 'utils', 'date', 'data', 'i18n', 'default', 'editor', 'rich-text'];
+const rsDependencies = ['Alert', 'Modal', 'Badge', 'OverlayTrigger', 'Overlay', 'Popover', 'ModalBody', 'Form', 'Tabs', 'Nav'];
+const wpDependencies = ['components', 'element', 'blocks', 'utils', 'date', 'data', 'i18n', 'default', 'editor', 'rich-text', 'hooks'];
 const extractScssPlugin = new ExtractText({ filename: '[name].css' });
-const loaderPlugin = new webpack.LoaderOptionsPlugin({ minimize: !debug, debug })
-const envPlugin  = new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development') });
-const browserSyncPlugin = new BrowserSync(bsConfig);
-
-const plugins = [envPlugin, loaderPlugin, browserSyncPlugin]
+const LoaderPlugin = new webpack.LoaderOptionsPlugin({ minimize: !debug, debug })
+const terserOptions = { terserOptions: { compress: true, ecma: '5', mangle: true, keep_classnames: false, keep_fnames: false } }
+const TerserPlugin = new Terser({ ...terserOptions, extractComments: true });
+const EnvPlugin  = new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development') });
+const BrowserSyncPluginApp = new BrowserSync(bsConfig.app);
+const BrowserSyncPluginJs = new BrowserSync(bsConfig.coverageJs);
+const BrowserSyncPluginPhp = new BrowserSync(bsConfig.coveragePhp);
+const EnogwePackPlugin = new EnogwePack()
+const plugins = [EnvPlugin, LoaderPlugin];
+const camelize = (dependency) => dependency.replace(/-\w/g, (match) => match.replace('-', '').toUpperCase())
 
 const scssConfig = {
     use: [
@@ -22,14 +28,16 @@ const scssConfig = {
     ]
 };
 
-const camelize = (dependency) => dependency.replace(/-\w/g, (match) => match.replace('-', '').toUpperCase())
-
 const externalsWp = wpDependencies.reduce((externals, dependency) => ({
     ...externals, [`@wordpress/${dependency}`]: { this: [ 'wp', camelize(dependency) ] }
 }), { });
 
+const externalsRs = rsDependencies.reduce((externals, dependency) => ({
+    ...externals, [`reactstrap/${dependency}`]: { this: [ 'Reactstrap', camelize(dependency) ] }
+}), { });
+
 const externals = Object.assign(
-    externalsWp, { 'react-dom': 'ReactDOM', react: 'React', jquery: 'jQuery' }
+    externalsWp, externalsRs, { 'react-dom': 'ReactDOM', react: 'React', jquery: 'jQuery' }
 );
 
 const defaultConfig = {
@@ -37,28 +45,17 @@ const defaultConfig = {
     mode: debug ? 'development' : 'production',
     devtool: debug ? 'inline-sourcemap' : false,
     plugins,
-    watchOptions: {
-        ignored: [
-            'node_modules',
-            'assets/css',
-            'assets/js',
-            'vendor',
-            'theme',
-            'lib',
-            'ts/lib',
-            'sass/lib'
-        ]
-    },
     stats: { children: false },
-    optimization: { minimize: !debug }
+    optimization: { minimize: !debug, minimizer: [TerserPlugin] }
 };
 
 const jsConfig = {
     ...defaultConfig,
+    plugins: [...defaultConfig.plugins, EnogwePackPlugin, BrowserSyncPluginJs, BrowserSyncPluginPhp],
     externals,
     entry: {
         enogwe: path.resolve(__dirname, 'ts/enogwe.tsx'),
-        enogwe_admin: path.resolve(__dirname, 'ts/enogwe_admin.tsx')
+        'admin/settings': path.resolve(__dirname, 'ts/admin/settings/index.tsx')
     },
     output: {
         filename: '[name].js',
@@ -83,15 +80,15 @@ const cssConfig = {
         filename: '[name].css',
         path: path.resolve(__dirname, 'assets/css')
     },
-    plugins: [extractScssPlugin, ...defaultConfig.plugins],
+    plugins: [extractScssPlugin, ...defaultConfig.plugins, BrowserSyncPluginApp],
     entry: {
         enogwe: path.resolve(__dirname, 'sass/enogwe.scss'),
-        enogwe_admin: path.resolve(__dirname, 'sass/enogwe_admin.scss')
+        'admin/settings': path.resolve(__dirname, 'sass/admin/settings.scss')
     },
     module: {
         rules: [
             {
-                test: /enogwe?\.scss$/,
+                test: /\.scss$/,
                 exclude: /node_modules/,
                 use: extractScssPlugin.extract(scssConfig)
             }
@@ -99,4 +96,4 @@ const cssConfig = {
     }
 }
 
-module.exports = [jsConfig, cssConfig];
+module.exports = [cssConfig, jsConfig];

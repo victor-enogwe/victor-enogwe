@@ -21,7 +21,11 @@
  * @link     https://github.com/victor-enogwe/enogwe
  */
 
+namespace Enogwe;
+
+// Exit if accessed directly.
+defined('WPINC') || exit;
+
 require_once __DIR__ . '/vendor/autoload.php';
 
-//  Exit if accessed directly.
-defined('ABSPATH') || exit;
+new Theme;
