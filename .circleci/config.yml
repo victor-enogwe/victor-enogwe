@@ -27,15 +27,11 @@ jobs:
                 name: install npm packages
                 command: if (test ! -d ~/enogwe_node/node_modules); then npm ci; fi
             - save_cache:
-                keys:
-                    - enogwe-composer-cache-{{ checksum "composer.lock" }}
-                paths:
-                    - ~/enogwe_node/vendor
+                key: enogwe-composer-cache-{{ checksum "composer.lock" }}
+                path: ~/enogwe_node/vendor
             - save_cache:
-                keys:
-                    - enogwe-node-cache-{{ checksum "package.lock.json" }}
-                paths:
-                    - ~/enogwe_node/node_modules
+                key: enogwe-node-cache-{{ checksum "package.lock.json" }}
+                path: ~/enogwe_node/node_modules
     testPhp:
         <<: *defaults
         steps:
