@@ -8,7 +8,7 @@ defaultsGit: &defaultsGit
       enabled: true
 restoreCache: &restoreCache
     keys:
-        - enogwe-node-cache-{{ checksum "package.lock.json" }}
+        - enogwe-node-cache-{{ checksum "npm-shrinkwrap.json" }}
         - enogwe-composer-cache-{{ checksum "composer.lock" }}
 jobs:
     install:
@@ -31,7 +31,7 @@ jobs:
                 paths:
                     - ~/enogwe_node/vendor
             - save_cache:
-                key: enogwe-node-cache-{{ checksum "package.lock.json" }}
+                key: enogwe-node-cache-{{ checksum "npm-shrinkwrap.json" }}
                 paths:
                     - ~/enogwe_node/node_modules
     testPhp:
