@@ -8,7 +8,7 @@ defaultsGit: &defaultsGit
       enabled: true
 restoreCache: &restoreCache
     keys:
-        - enogwe-node-cache-{{ checksum "package.json" }}
+        - enogwe-node-cache-{{ checksum "package.lock.json" }}
         - enogwe-composer-cache-{{ checksum "composer.lock" }}
 jobs:
     install:
