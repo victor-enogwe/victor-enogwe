@@ -18,9 +18,6 @@ jobs:
             - restore_cache:
                 <<: *restoreCache
             - run:
-                name: install xdebug
-                command: pecl install xdebug
-            - run:
                 name: install composer packages
                 command: composer install
             - run:
