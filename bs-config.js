@@ -12,22 +12,19 @@
  |
  |
  */
-module.exports = {
-    "ui": {
-        "port": 3001
-    },
-    "files": ["./functions.php", './lib'],
-    "watchEvents": [
-        "change", "add"
-    ],
+const path = require('path')
+
+const files = ['./lib', './assets', '*.php', './style.css'];
+
+const defaults = {
+    files,
+    watchEvents: ["change", "add"],
     "watch": false,
-    // "ignore": ['**'],
     "single": false,
     "watchOptions": {
         "ignoreInitial": true
     },
     "server": false,
-    "proxy": "localhost:8080",
     "port": 3000,
     "middleware": false,
     "serveStatic": [],
@@ -106,3 +103,37 @@ module.exports = {
     },
     "injectNotification": false
 };
+
+const app = {
+    ...defaults,
+    ui: { port: 3001 },
+    proxy: 'localhost:8080',
+}
+
+const coverageJs = {
+    ...defaults,
+    ui: { port: 7001 },
+    port: 7000,
+    files: ["coverage/js/lcov-report/index.html"],
+    server: {
+      baseDir: path.resolve(__dirname, 'coverage/js/lcov-report/'),
+      index: 'index.html',
+    }
+}
+
+const coveragePhp = {
+    ...defaults,
+    ui: { port: 8001 },
+    port: 8000,
+    files: ["coverage/php/index.html"],
+    server: {
+      baseDir: path.resolve(__dirname, 'coverage/php/'),
+      index: 'index.html',
+    }
+}
+
+module.exports = {
+    app,
+    coverageJs,
+    coveragePhp
+}
