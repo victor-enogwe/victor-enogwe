@@ -1,8 +1,14 @@
 *.log
+*.snap
+settings.json
+.phpunit.result.cache
+wp-cli.yml
 enogwe.zip
 
 /node_modules/
 /vendor/*
-!/vendor/composer
+!/vendor/composer/*
+/vendor/composer/installed.json
 !/vendor/autoload.php
 /theme/
+/coverage/
