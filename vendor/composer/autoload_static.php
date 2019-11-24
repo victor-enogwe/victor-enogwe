@@ -12,79 +12,84 @@ class ComposerStaticInitce44a488ed18f5588f6694365f940478
     );
 
     public static $prefixLengthsPsr4 = array (
-        'p' =>
+        'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
-        'W' =>
+        'W' => 
         array (
             'Webmozart\\Assert\\' => 17,
             'WP_Mock\\' => 8,
         ),
-        'S' =>
+        'S' => 
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
         ),
-        'E' =>
+        'E' => 
         array (
             'Enogwe\\Test\\' => 12,
             'Enogwe\\' => 7,
         ),
-        'D' =>
+        'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
             'DeepCopy\\' => 9,
+            'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => 55,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'phpDocumentor\\Reflection\\' =>
+        'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
-        'Webmozart\\Assert\\' =>
+        'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
-        'WP_Mock\\' =>
+        'WP_Mock\\' => 
         array (
             0 => __DIR__ . '/..' . '/10up/wp_mock/php/WP_Mock',
         ),
-        'Symfony\\Polyfill\\Ctype\\' =>
+        'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
-        'Enogwe\\Test\\' =>
+        'Enogwe\\Test\\' => 
         array (
             0 => __DIR__ . '/../..' . '/test/pgp',
         ),
-        'Enogwe\\' =>
+        'Enogwe\\' => 
         array (
             0 => __DIR__ . '/../..' . '/lib',
         ),
-        'Doctrine\\Instantiator\\' =>
+        'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
         ),
-        'DeepCopy\\' =>
+        'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dealerdirect/phpcodesniffer-composer-installer/src',
         ),
     );
 
     public static $prefixesPsr0 = array (
-        'P' =>
+        'P' => 
         array (
-            'Prophecy\\' =>
+            'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
             ),
         ),
-        'M' =>
+        'M' => 
         array (
-            'Mockery' =>
+            'Mockery' => 
             array (
                 0 => __DIR__ . '/..' . '/mockery/mockery/library',
             ),

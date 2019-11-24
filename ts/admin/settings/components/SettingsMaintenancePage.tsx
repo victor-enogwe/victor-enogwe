@@ -1,12 +1,8 @@
-import * as React from 'react'
-import { useContext } from '@wordpress/element'
 import { Fragment } from '@wordpress/element'
-import { StateContext } from './SettingsApp';
+import * as React from 'react'
 
 export const SettingsMaintenancePage = () => {
-    const settings = useContext(StateContext).maintenance
+    //   const settings = useContext(StateContext).maintenance
 
-    return (<Fragment>
-
-    </Fragment>)
+  return (<Fragment />)
 }

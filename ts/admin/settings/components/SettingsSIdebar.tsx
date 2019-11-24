@@ -15,14 +15,14 @@ import { Nav, NavItem, NavLink } from 'reactstrap'
  * @returns {JSX.Element}
  */
 export function SettingsSidebar (props: SidebarProps): JSX.Element {
-    const maintenance = useContext(StateContext).maintenance
-    const tabs: Tab[] = props.tabNames.map(name => ({ name, className: name, title: name, icon: props.tabIcons[name] }))
-    const disabled = (tab: Tab) => tab.title === 'Maintenance' && !maintenance
-    const isActive = (tab: Tab) => props.activeSidebarMenu === tab.title
-    const activateMenu = (tab: Tab) => () => settingsStore.dispatch<GenericAction<MenuTabNames>>({
-        type: ACTIVATE_SIDEBAR_MENU, data: tab.name
-    })
-    const Tabs = tabs.map((tab, index) => (
+  const maintenance = useContext(StateContext).maintenance
+  const tabs: Tab[] = props.tabNames.map(name => ({ name, className: name, title: name, icon: props.tabIcons[name] }))
+  const disabled = (tab: Tab) => tab.title === 'Maintenance' && !maintenance
+  const isActive = (tab: Tab) => props.activeSidebarMenu === tab.title
+  const activateMenu = (tab: Tab) => () => settingsStore.dispatch<GenericAction<MenuTabNames>>({
+    type: ACTIVATE_SIDEBAR_MENU, data: tab.name
+  })
+  const Tabs = tabs.map((tab, index) => (
         <NavItem key={`settings_sidebar_${index}`}>
             <NavLink
                 className={tab.className}
@@ -36,5 +36,5 @@ export function SettingsSidebar (props: SidebarProps): JSX.Element {
         </NavItem>
     ))
 
-    return <Nav pills={true} vertical={true} navbar={true}>{Tabs}</Nav>
+  return <Nav pills={true} vertical={true} navbar={true}>{Tabs}</Nav>
 }

@@ -15,11 +15,11 @@ import classnames = require('classnames')
  * @returns {JSX.Element}
  */
 export function SettingsUploadImage (props: PropsWithChildren<ImageProps>): JSX.Element {
-    const { media, onDelete, onClick, label } = props
-    const NoImage = () => <Placeholder icon="format-image" style={settingStyles.placeholder}/>
-    const createSrcSet = (image: MediaInfo): string => Object.values(image.sizes).map(src => src.url).join(', ')
+  const { media, onDelete, onClick, label } = props
+  const NoImage = () => <Placeholder icon="format-image" style={settingStyles.placeholder}/>
+  const createSrcSet = (image: MediaInfo): string => Object.values(image.sizes).map(src => src.url).join(', ')
 
-    return (
+  return (
         <Card className={classnames('border-0', 'flex-fill', 'flex-grow-1', 'justify-content-center', 'align-items-center')}>
             <Row noGutters={true} className="w-md-75">
                 <Col>{media ? <img srcSet={createSrcSet(media)}/> : <NoImage />}</Col>
@@ -31,5 +31,5 @@ export function SettingsUploadImage (props: PropsWithChildren<ImageProps>): JSX.
                 </Col>
             </Row>
         </Card>
-    )
+  )
 }

@@ -14,4 +14,5 @@ return array(
     'Enogwe\\' => array($baseDir . '/lib'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
+    'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => array($vendorDir . '/dealerdirect/phpcodesniffer-composer-installer/src'),
 );

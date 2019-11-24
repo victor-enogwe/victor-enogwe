@@ -7,5 +7,5 @@ import { Fragment } from '@wordpress/element'
  * @returns {JSX.Element}
  */
 export function SettingsLayoutPage (): JSX.Element {
-    return (<Fragment/>)
+  return (<Fragment/>)
 }

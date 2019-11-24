@@ -14,12 +14,12 @@ import { handleMediaUpload, handleMediaDelete } from '../store/effects'
  * @returns {JSX.Element}
  */
 export function SettingsAssetsPage (): JSX.Element {
-    const { assets } = useContext(StateContext)
-    const logo = assets && assets.logo
-    const favicon = assets && assets.favicon
-    const picture = assets && assets.picture
+  const { assets } = useContext(StateContext)
+  const logo = assets && assets.logo
+  const favicon = assets && assets.favicon
+  const picture = assets && assets.picture
 
-    return (
+  return (
         <div style={settingStyles.assetPage}>
             <Panel>
                 <PanelBody initialOpen={true} title="LOGO">
@@ -58,5 +58,5 @@ export function SettingsAssetsPage (): JSX.Element {
                 </PanelBody>
             </Panel>
         </div>
-    )
+  )
 }

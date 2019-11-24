@@ -17,7 +17,7 @@ import { SettingsPage } from './SettingsPage'
  * @returns {JSX.Element}
  */
 export function Settings (props: PropsWithChildren<SettingsPageProps>): JSX.Element {
-    return (
+  return (
         <Row noGutters={true} className={classnames('flex-fill', 'flex-grow-1')}>
             <Col md="3" className={classnames('card', 'p-0', 'border-0', 'bg-light', 'd-none', 'd-md-block')}>
                 <CardHeader>
@@ -39,5 +39,5 @@ export function Settings (props: PropsWithChildren<SettingsPageProps>): JSX.Elem
             </Col>
             <SettingsPage page={props.page}/>
         </Row>
-    )
+  )
 }

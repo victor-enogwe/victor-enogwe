@@ -27,7 +27,7 @@ export const REFRESH_STATE = 'REFRESH_STATE'
  * @returns {GenericAction<T>}
  */
 function createAction<T> (action: GenericAction<T>): GenericAction<T> {
-    return action
+  return action
 }
 
 /**
@@ -38,44 +38,44 @@ function createAction<T> (action: GenericAction<T>): GenericAction<T> {
  * @returns
  */
 function assetAction (type: string) {
-    return createAction.bind<null, GenericAction<MediaInfo | {}>, GenericAction<MediaInfo | {}>>(null, { type, data: {} })
+  return createAction.bind<null, GenericAction<MediaInfo | {}>, GenericAction<MediaInfo | {}>>(null, { type, data: {} })
 }
 
 export const actions = {
-    activateMaintenanceMode: createAction.bind<null, GenericAction<boolean>, GenericAction<boolean>>(null, {
-        type: ACTIVATE_MAINTENENCE_MODE, data: true
-    }),
-    activateSidebarMenu: createAction.bind<null, GenericAction<MenuTabNames>, GenericAction<MenuTabNames>>(null, {
-        type: ACTIVATE_SIDEBAR_MENU, data: 'Layouts'
-    }),
-    uploadLogo: assetAction(UPLOAD_LOGO),
-    uploadFavicon: assetAction(UPLOAD_FAVICON),
-    uploadPicture: assetAction(UPLOAD_PICTURE),
-    deleteLogo: assetAction(DELETE_LOGO),
-    deleteFavicon: assetAction(DELETE_FAVICON),
-    deletePicture: assetAction(DELETE_PICTURE),
-    deActivateMaintenanceMode: createAction.bind<null, GenericAction<boolean>, GenericAction<boolean>>(null, {
-        type: ACTIVATE_MAINTENENCE_MODE, data: false
-    }),
-    fetchSettingsClosed: createAction.bind<null, GenericAction<ApiStatus>, GenericAction<ApiStatus>>(null, {
-        type: FETCH_SETTINGS_CLOSED, data: 'closed'
-    }),
-    fetchSettingsStale: createAction.bind<null, GenericAction<ApiStatus>, GenericAction<ApiStatus>>(null, {
-        type: FETCH_SETTINGS_STALE, data: 'stale'
-    }),
-    fetchSettingsLoading: createAction.bind<null, GenericAction<ApiStatus>, GenericAction<ApiStatus>>(null, {
-        type: FETCH_SETTINGS_LOADING, data: 'loading'
-    }),
-    fetchSettingsError: createAction.bind<null, GenericAction<ApiStatus>, GenericAction<ApiStatus>>(null, {
-        type: FETCH_SETTINGS_ERROR, data: 'error'
-    }),
-    fetchSettingsSuccess: createAction.bind<null, GenericAction<ApiStatus>, GenericAction<ApiStatus>>(null, {
-        type: FETCH_SETTINGS_SUCCESS, data: 'success'
-    }),
-    fetchSettingsNetwork: createAction.bind<null, GenericAction<ApiStatus>, GenericAction<ApiStatus>>(null, {
-        type: FETCH_SETTINGS_NETWORK, data: 'network'
-    }),
-    refreshState: createAction.bind<null, GenericAction<EnogweState.Settings>, GenericAction<EnogweState.Settings>>(null, {
-        type: REFRESH_STATE, data: State
-    })
+  activateMaintenanceMode: createAction.bind<null, GenericAction<boolean>, GenericAction<boolean>>(null, {
+    type: ACTIVATE_MAINTENENCE_MODE, data: true
+  }),
+  activateSidebarMenu: createAction.bind<null, GenericAction<MenuTabNames>, GenericAction<MenuTabNames>>(null, {
+    type: ACTIVATE_SIDEBAR_MENU, data: 'Layouts'
+  }),
+  uploadLogo: assetAction(UPLOAD_LOGO),
+  uploadFavicon: assetAction(UPLOAD_FAVICON),
+  uploadPicture: assetAction(UPLOAD_PICTURE),
+  deleteLogo: assetAction(DELETE_LOGO),
+  deleteFavicon: assetAction(DELETE_FAVICON),
+  deletePicture: assetAction(DELETE_PICTURE),
+  deActivateMaintenanceMode: createAction.bind<null, GenericAction<boolean>, GenericAction<boolean>>(null, {
+    type: ACTIVATE_MAINTENENCE_MODE, data: false
+  }),
+  fetchSettingsClosed: createAction.bind<null, GenericAction<ApiStatus>, GenericAction<ApiStatus>>(null, {
+    type: FETCH_SETTINGS_CLOSED, data: 'closed'
+  }),
+  fetchSettingsStale: createAction.bind<null, GenericAction<ApiStatus>, GenericAction<ApiStatus>>(null, {
+    type: FETCH_SETTINGS_STALE, data: 'stale'
+  }),
+  fetchSettingsLoading: createAction.bind<null, GenericAction<ApiStatus>, GenericAction<ApiStatus>>(null, {
+    type: FETCH_SETTINGS_LOADING, data: 'loading'
+  }),
+  fetchSettingsError: createAction.bind<null, GenericAction<ApiStatus>, GenericAction<ApiStatus>>(null, {
+    type: FETCH_SETTINGS_ERROR, data: 'error'
+  }),
+  fetchSettingsSuccess: createAction.bind<null, GenericAction<ApiStatus>, GenericAction<ApiStatus>>(null, {
+    type: FETCH_SETTINGS_SUCCESS, data: 'success'
+  }),
+  fetchSettingsNetwork: createAction.bind<null, GenericAction<ApiStatus>, GenericAction<ApiStatus>>(null, {
+    type: FETCH_SETTINGS_NETWORK, data: 'network'
+  }),
+  refreshState: createAction.bind<null, GenericAction<EnogweState.Settings>, GenericAction<EnogweState.Settings>>(null, {
+    type: REFRESH_STATE, data: State
+  })
 }
