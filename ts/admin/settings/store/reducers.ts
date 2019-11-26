@@ -1,25 +1,8 @@
-import { combineReducers } from '@types/@wordpress/data'
-import { State } from './state'
-import { MediaInfo, GenericAction, MenuTabNames, Sidebar, ApiStatus, EnogweState } from 'global'
-import {
-    ACTIVATE_SIDEBAR_MENU,
-    UPLOAD_LOGO,
-    UPLOAD_FAVICON,
-    UPLOAD_PICTURE,
-    DELETE_LOGO,
-    DELETE_FAVICON,
-    DELETE_PICTURE,
-    ACTIVATE_MAINTENENCE_MODE,
-    DEACTIVATE_MAINTENENCE_MODE,
-    FETCH_SETTINGS_CLOSED,
-    FETCH_SETTINGS_STALE,
-    FETCH_SETTINGS_LOADING,
-    FETCH_SETTINGS_ERROR,
-    FETCH_SETTINGS_NETWORK,
-    FETCH_SETTINGS_SUCCESS,
-    REFRESH_STATE
-} from './actions'
+import { combineReducers } from '@wordpress/data'
+import { ApiStatus, EnogweState, GenericAction, MediaInfo, MenuTabNames, Sidebar } from 'global'
 import { AnyAction } from 'redux'
+import { ACTIVATE_MAINTENENCE_MODE, ACTIVATE_SIDEBAR_MENU, DEACTIVATE_MAINTENENCE_MODE, DELETE_FAVICON, DELETE_LOGO, DELETE_PICTURE, FETCH_SETTINGS_CLOSED, FETCH_SETTINGS_ERROR, FETCH_SETTINGS_LOADING, FETCH_SETTINGS_NETWORK, FETCH_SETTINGS_STALE, FETCH_SETTINGS_SUCCESS, REFRESH_STATE, UPLOAD_FAVICON, UPLOAD_LOGO, UPLOAD_PICTURE } from './actions'
+import { State } from './state'
 
 const maintenanceReducers = {
     /**
@@ -30,11 +13,11 @@ const maintenanceReducers = {
      * @param {GenericAction<boolean>} action
      * @returns {boolean}
      */
-  active (state: boolean = State.maintenance.active, action: GenericAction<boolean>): boolean {
-    const { type } = action
-    if (![ACTIVATE_MAINTENENCE_MODE, DEACTIVATE_MAINTENENCE_MODE].includes(type)) { return state }
-    return type === ACTIVATE_MAINTENENCE_MODE ? true : false
-  }
+    active(state: boolean = State.maintenance.active, action: GenericAction<boolean>): boolean {
+        const { type } = action
+        if (![ACTIVATE_MAINTENENCE_MODE, DEACTIVATE_MAINTENENCE_MODE].includes(type)) { return state }
+        return type === ACTIVATE_MAINTENENCE_MODE ? true : false
+    }
 }
 
 /**
@@ -46,9 +29,9 @@ const maintenanceReducers = {
  * @param {GenericAction<MenuTabNames>} action
  * @returns {Sidebar}
  */
-function sidebar (state: Sidebar = State.sidebar, action: GenericAction<MenuTabNames>): Sidebar {
-  const { type, data } = action
-  return type === ACTIVATE_SIDEBAR_MENU ? { ...state, activeSidebarMenu: data } : state
+function sidebar(state: Sidebar = State.sidebar, action: GenericAction<MenuTabNames>): Sidebar {
+    const { type, data } = action
+    return type === ACTIVATE_SIDEBAR_MENU ? { ...state, activeSidebarMenu: data } : state
 }
 
 /**
@@ -58,21 +41,21 @@ function sidebar (state: Sidebar = State.sidebar, action: GenericAction<MenuTabN
  * @param {Record<string, string>} reducerTypes
  * @returns
  */
-function asset (reducerTypes: Record<string, string>) {
-  return (state: MediaInfo | undefined, action: GenericAction<MediaInfo>): MediaInfo | undefined => {
-    const { type, data } = action
-    const types = Object.values(reducerTypes)
-    if (!types.includes(type)) { return state }
-    const item = type.split('_')
-    switch (action.type) {
-    case `DELETE_${item[1]}`:
-      return data
-    case `UPLOAD_${item[1]}`:
-      return { ...state, ...data }
-    default:
-      return state
+function asset(reducerTypes: Record<string, string>) {
+    return (state: MediaInfo | undefined, action: GenericAction<MediaInfo>): MediaInfo | undefined => {
+        const { type, data } = action
+        const types = Object.values(reducerTypes)
+        if (!types.includes(type)) { return state }
+        const item = type.split('_')
+        switch (action.type) {
+            case `DELETE_${item[1]}`:
+                return data
+            case `UPLOAD_${item[1]}`:
+                return { ...state, ...data }
+            default:
+                return state
+        }
     }
-  }
 }
 
 /**
@@ -82,49 +65,49 @@ function asset (reducerTypes: Record<string, string>) {
  * @param {Record<string, string>} reducerTypes
  * @returns
  */
-function ApiSetting (reducerTypes: Record<string, string>) {
-  return (state = State.api.settings, action: GenericAction<ApiStatus>): ApiStatus => {
-    const { type } = action
-    const types = Object.values(reducerTypes)
-    if (!types.includes(type)) { return state }
-    switch (action.type) {
-    case FETCH_SETTINGS_STALE:
-      return 'stale'
-    case FETCH_SETTINGS_LOADING:
-      return 'loading'
-    case FETCH_SETTINGS_ERROR:
-      return 'error'
-    case FETCH_SETTINGS_NETWORK:
-      return 'network'
-    case FETCH_SETTINGS_SUCCESS:
-      return 'success'
-    default:
-      return 'closed'
+function ApiSetting(reducerTypes: Record<string, string>) {
+    return (state = State.api.settings, action: GenericAction<ApiStatus>): ApiStatus => {
+        const { type } = action
+        const types = Object.values(reducerTypes)
+        if (!types.includes(type)) { return state }
+        switch (action.type) {
+            case FETCH_SETTINGS_STALE:
+                return 'stale'
+            case FETCH_SETTINGS_LOADING:
+                return 'loading'
+            case FETCH_SETTINGS_ERROR:
+                return 'error'
+            case FETCH_SETTINGS_NETWORK:
+                return 'network'
+            case FETCH_SETTINGS_SUCCESS:
+                return 'success'
+            default:
+                return 'closed'
+        }
     }
-  }
 }
 
 const maintenance = combineReducers(maintenanceReducers)
 
 const assets = combineReducers({
-  logo: asset({ UPLOAD_LOGO, DELETE_LOGO }),
-  favicon: asset({ UPLOAD_FAVICON, DELETE_FAVICON }),
-  picture: asset({ UPLOAD_PICTURE, DELETE_PICTURE })
+    logo: asset({ UPLOAD_LOGO, DELETE_LOGO }),
+    favicon: asset({ UPLOAD_FAVICON, DELETE_FAVICON }),
+    picture: asset({ UPLOAD_PICTURE, DELETE_PICTURE })
 })
 
 const settings = ApiSetting({
-  FETCH_SETTINGS_STALE,
-  FETCH_SETTINGS_CLOSED,
-  FETCH_SETTINGS_LOADING,
-  FETCH_SETTINGS_ERROR,
-  FETCH_SETTINGS_NETWORK,
-  FETCH_SETTINGS_SUCCESS
+    FETCH_SETTINGS_STALE,
+    FETCH_SETTINGS_CLOSED,
+    FETCH_SETTINGS_LOADING,
+    FETCH_SETTINGS_ERROR,
+    FETCH_SETTINGS_NETWORK,
+    FETCH_SETTINGS_SUCCESS
 })
 
 const api = combineReducers({ settings })
 
 export const rootReducers = combineReducers({
-  maintenance, sidebar, assets, api
+    maintenance, sidebar, assets, api
 })
 
 /**
@@ -135,12 +118,12 @@ export const rootReducers = combineReducers({
  * @param {(GenericAction<EnogweState.Settings> | AnyAction)} action
  * @returns {EnogweState.Settings}
  */
-export function reducer (
+export function reducer(
     state: EnogweState.Settings = State, action: GenericAction<EnogweState.Settings> | AnyAction
 ): EnogweState.Settings {
-  const { type, data } = action
-  if (type === REFRESH_STATE) {
-    return data ? data : state
-  }
-  return rootReducers(state as any, action)
+    const { type, data } = action
+    if (type === REFRESH_STATE) {
+        return data ? data : state
+    }
+    return rootReducers(state as any, action)
 }

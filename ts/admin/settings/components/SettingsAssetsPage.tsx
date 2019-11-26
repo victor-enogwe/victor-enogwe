@@ -1,11 +1,11 @@
+import { Panel, PanelBody, PanelRow } from '@wordpress/components'
+import { useContext } from '@wordpress/element'
 import * as React from 'react'
-import { useContext } from '@types/@wordpress/element'
-import { PanelBody, Panel, PanelRow } from '@types/@wordpress/components'
-import { UPLOAD_LOGO, UPLOAD_FAVICON, UPLOAD_PICTURE, DELETE_FAVICON, DELETE_PICTURE, DELETE_LOGO } from '../store/actions'
+import { DELETE_FAVICON, DELETE_LOGO, DELETE_PICTURE, UPLOAD_FAVICON, UPLOAD_LOGO, UPLOAD_PICTURE } from '../store/actions'
+import { handleMediaDelete, handleMediaUpload } from '../store/effects'
+import { settingStyles } from '../styles/settings'
 import { StateContext } from './SettingsApp'
 import { SettingsUploadImage } from './SettingsUploadImage'
-import { settingStyles } from '../styles/settings'
-import { handleMediaUpload, handleMediaDelete } from '../store/effects'
 
 /**
  * SettingsAssetPage Componennt
@@ -13,13 +13,13 @@ import { handleMediaUpload, handleMediaDelete } from '../store/effects'
  * @export
  * @returns {JSX.Element}
  */
-export function SettingsAssetsPage (): JSX.Element {
-  const { assets } = useContext(StateContext)
-  const logo = assets && assets.logo
-  const favicon = assets && assets.favicon
-  const picture = assets && assets.picture
+export function SettingsAssetsPage(): JSX.Element {
+    const { assets } = useContext(StateContext)
+    const logo = assets && assets.logo
+    const favicon = assets && assets.favicon
+    const picture = assets && assets.picture
 
-  return (
+    return (
         <div style={settingStyles.assetPage}>
             <Panel>
                 <PanelBody initialOpen={true} title="LOGO">
@@ -58,5 +58,5 @@ export function SettingsAssetsPage (): JSX.Element {
                 </PanelBody>
             </Panel>
         </div>
-  )
+    )
 }

@@ -2,15 +2,7 @@
 // Project: https://github.com/WordPress/gutenberg/tree/master/packages/components
 // Definitions by: Derek P Sifford <https://github.com/dsifford>
 
-import {
-    Component,
-    ComponentType,
-    Context,
-    FormEvent,
-    HTMLProps,
-    ReactElement,
-    ReactNode,
-} from '@types/react';
+import { Component, ComponentType, Context, FormEvent, HTMLProps, ReactElement, ReactNode } from 'react';
 
 export namespace Button {
     interface Props extends HTMLProps<HTMLButtonElement> {
@@ -145,12 +137,12 @@ export namespace Dropdown {
          * @defaultValue 'top center'
          */
         position?:
-            | 'top left'
-            | 'top center'
-            | 'top right'
-            | 'bottom left'
-            | 'bottom center'
-            | 'bottom right';
+        | 'top left'
+        | 'top center'
+        | 'top right'
+        | 'bottom left'
+        | 'bottom center'
+        | 'bottom right';
     }
 }
 export const Dropdown: ComponentType<Dropdown.Props>;
@@ -384,9 +376,9 @@ export namespace Notice {
          */
         actions?: Array<
             | {
-                  label: ReactNode;
-                  onClick(): void;
-              }
+                label: ReactNode;
+                onClick(): void;
+            }
             | { label: string; url: string }
         >;
         status?: 'error' | 'success' | 'warning';
@@ -490,7 +482,7 @@ export namespace RadioControl {
         onChange(option: T): void;
     }
 }
-export class RadioControl<T> extends Component<RadioControl.Props<T>> {}
+export class RadioControl<T> extends Component<RadioControl.Props<T>> { }
 
 export namespace SelectControl {
     interface CommonProps {
@@ -512,7 +504,7 @@ export namespace SelectControl {
     }
     type Props<T> = SingleProps<T> | MultipleProps<T>;
 }
-export class SelectControl<T = any> extends Component<SelectControl.Props<T>> {}
+export class SelectControl<T = any> extends Component<SelectControl.Props<T>> { }
 
 export const Spinner: ComponentType;
 
@@ -573,7 +565,7 @@ export namespace ToolbarButton {
 export const ToolbarButton: ComponentType<ToolbarButton.Props>;
 
 export namespace TabPanel {
-    export type Tab  = {
+    export type Tab = {
         name: string
         title: string
         className: string
@@ -586,7 +578,7 @@ export namespace TabPanel {
             [key: number]: Tab
         }
         children: (tabName: Tab) => ReactNode
-        onSelect?(tabName: string):any
+        onSelect?(tabName: string): any
     }
 }
 export const TabPanel: ComponentType<TabPanel.Props>;

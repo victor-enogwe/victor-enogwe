@@ -1,5 +1,5 @@
 import { EnogweState, GenericAction, MediaInfo, MediaProps } from 'global'
-import WPAPI from '@types/wpapi/superagent'
+import WPAPI from 'wpapi/superagent'
 import { settingsStore } from '.'
 import { defaultMediaConfig } from '../constants'
 import { actions, ACTIVATE_MAINTENENCE_MODE, DEACTIVATE_MAINTENENCE_MODE, REFRESH_STATE } from './actions'
@@ -16,19 +16,19 @@ const wp = new WPAPI({ endpoint })
  * @export
  * @returns {Promise<void>}
  */
-export async function getSettings (): Promise<void> {
-  try {
-    const { fetchSettingsLoading, fetchSettingsSuccess, fetchSettingsClosed } = actions
-    settingsStore.dispatch(fetchSettingsLoading())
-    const { settings: data } = await wp.root('settings').get()
-    settingsStore.dispatch({ type: REFRESH_STATE, data: JSON.parse(data) })
-    setTimeout(() => {
-      settingsStore.dispatch(fetchSettingsSuccess())
-      settingsStore.dispatch(fetchSettingsClosed()) // redux-thunk
-    }, 2000)
-  } catch (error) {
-    setTimeout(() => settingsStore.dispatch(actions.fetchSettingsError()), 2000)
-  }
+export async function getSettings(): Promise<void> {
+    try {
+        const { fetchSettingsLoading, fetchSettingsSuccess, fetchSettingsClosed } = actions
+        settingsStore.dispatch(fetchSettingsLoading())
+        const { settings: data } = await wp.root('settings').get()
+        settingsStore.dispatch({ type: REFRESH_STATE, data: JSON.parse(data) })
+        setTimeout(() => {
+            settingsStore.dispatch(fetchSettingsSuccess())
+            settingsStore.dispatch(fetchSettingsClosed()) // redux-thunk
+        }, 2000)
+    } catch (error) {
+        setTimeout(() => settingsStore.dispatch(actions.fetchSettingsError()), 2000)
+    }
 }
 
 /**
@@ -38,18 +38,18 @@ export async function getSettings (): Promise<void> {
  * @param {EnogweState.Settings} settings
  * @returns {Promise<void>}
  */
-export async function saveSettings (settings: EnogweState.Settings): Promise<void> {
-  try {
-    const { fetchSettingsLoading, fetchSettingsSuccess, fetchSettingsClosed } = actions
-    settingsStore.dispatch(fetchSettingsLoading())
-    await wp.root('settings').auth({ nonce: window.cred.nonce }).create({ settings: JSON.stringify(settings) })
-    setTimeout(() => {
-      settingsStore.dispatch(fetchSettingsSuccess())
-      settingsStore.dispatch(fetchSettingsClosed()) // redux-thunk
-    }, 2000)
-  } catch (error) {
-    setTimeout(() => settingsStore.dispatch(actions.fetchSettingsError()), 2000)
-  }
+export async function saveSettings(settings: EnogweState.Settings): Promise<void> {
+    try {
+        const { fetchSettingsLoading, fetchSettingsSuccess, fetchSettingsClosed } = actions
+        settingsStore.dispatch(fetchSettingsLoading())
+        await wp.root('settings').auth({ nonce: window.cred.nonce }).create({ settings: JSON.stringify(settings) })
+        setTimeout(() => {
+            settingsStore.dispatch(fetchSettingsSuccess())
+            settingsStore.dispatch(fetchSettingsClosed()) // redux-thunk
+        }, 2000)
+    } catch (error) {
+        setTimeout(() => settingsStore.dispatch(actions.fetchSettingsError()), 2000)
+    }
 }
 
 /**
@@ -59,10 +59,10 @@ export async function saveSettings (settings: EnogweState.Settings): Promise<voi
  * @param {boolean} isChecked
  * @returns
  */
-export function toggleMaintenance (isChecked: boolean) {
-  const deActivate = { type: DEACTIVATE_MAINTENENCE_MODE }
-  const activate = { type: ACTIVATE_MAINTENENCE_MODE }
-  return isChecked ? settingsStore.dispatch(activate) : settingsStore.dispatch(deActivate)
+export function toggleMaintenance(isChecked: boolean) {
+    const deActivate = { type: DEACTIVATE_MAINTENENCE_MODE }
+    const activate = { type: ACTIVATE_MAINTENENCE_MODE }
+    return isChecked ? settingsStore.dispatch(activate) : settingsStore.dispatch(deActivate)
 }
 
 /**
@@ -72,14 +72,14 @@ export function toggleMaintenance (isChecked: boolean) {
  * @param {string} action
  * @returns {(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void}
  */
-export function handleMediaUpload (action: string): (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void {
-  const WpMedia = (config: MediaProps) => window.wp.media({ ...defaultMediaConfig, ...config })
-  const frame = WpMedia({ title: '', button: { text: 'Use  this image' } })
-  const onSelect = () => settingsStore.dispatch({ type: action, data: frame.state().get('selection').first().toJSON() })
+export function handleMediaUpload(action: string): (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void {
+    const WpMedia = (config: MediaProps) => window.wp.media({ ...defaultMediaConfig, ...config })
+    const frame = WpMedia({ title: '', button: { text: 'Use  this image' } })
+    const onSelect = () => settingsStore.dispatch({ type: action, data: frame.state().get('selection').first().toJSON() })
 
-  frame.on('select', onSelect)
+    frame.on('select', onSelect)
 
-  return (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => frame.open()
+    return (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => frame.open()
 }
 
 /**
@@ -88,8 +88,8 @@ export function handleMediaUpload (action: string): (e: React.MouseEvent<HTMLBut
  * @export
  * @returns
  */
-export function handleMediaDelete (type: string) {
-  return () => settingsStore.dispatch<GenericAction<MediaInfo | undefined>>({ type, data: undefined })
+export function handleMediaDelete(type: string) {
+    return () => settingsStore.dispatch<GenericAction<MediaInfo | undefined>>({ type, data: undefined })
 }
 
 /**
@@ -97,6 +97,6 @@ export function handleMediaDelete (type: string) {
  *
  * @export
  */
-export function menuExpanded () {
+export function menuExpanded() {
 
 }

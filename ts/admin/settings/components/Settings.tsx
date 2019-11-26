@@ -1,13 +1,13 @@
-import * as React from 'react'
-import { Row, Col, CardHeader, CardTitle, CardBody } from 'reactstrap'
+import { IconButton } from '@wordpress/components'
+import { PropsWithChildren } from '@wordpress/element'
+import { __ } from '@wordpress/i18n'
 import classnames from 'classnames'
-import { PropsWithChildren } from '@types/@wordpress/element'
-import { __ } from '@types/@wordpress/i18n'
-import { IconButton } from '@types/@wordpress/components'
-import { SettingsSidebar } from './SettingsSIdebar'
-import { tabNames, tabIcons } from '../constants'
 import { SettingsPageProps } from 'global'
+import * as React from 'react'
+import { CardBody, CardHeader, CardTitle, Col, Row } from 'reactstrap'
+import { tabIcons, tabNames } from '../constants'
 import { SettingsPage } from './SettingsPage'
+import { SettingsSidebar } from './SettingsSIdebar'
 
 /**
  * Settings Component
@@ -16,8 +16,8 @@ import { SettingsPage } from './SettingsPage'
  * @param {PropsWithChildren<SettingsPageProps>} props
  * @returns {JSX.Element}
  */
-export function Settings (props: PropsWithChildren<SettingsPageProps>): JSX.Element {
-  return (
+export function Settings(props: PropsWithChildren<SettingsPageProps>): JSX.Element {
+    return (
         <Row noGutters={true} className={classnames('flex-fill', 'flex-grow-1')}>
             <Col md="3" className={classnames('card', 'p-0', 'border-0', 'bg-light', 'd-none', 'd-md-block')}>
                 <CardHeader>
@@ -34,10 +34,10 @@ export function Settings (props: PropsWithChildren<SettingsPageProps>): JSX.Elem
                     </CardTitle>
                 </CardHeader>
                 <CardBody>
-                    <SettingsSidebar tabNames={tabNames} tabIcons={tabIcons} activeSidebarMenu={props.page}/>
+                    <SettingsSidebar tabNames={tabNames} tabIcons={tabIcons} activeSidebarMenu={props.page} />
                 </CardBody>
             </Col>
-            <SettingsPage page={props.page}/>
+            <SettingsPage page={props.page} />
         </Row>
-  )
+    )
 }

@@ -1,3 +1,3 @@
-import WPAPI  from '@types/wpapi';
+import WPAPI from 'wpapi';
 
 export default WPAPI;

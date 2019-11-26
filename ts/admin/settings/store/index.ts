@@ -1,5 +1,5 @@
-import { registerStore } from '@types/@wordpress/data'
-import { reducer } from './reducers'
+import { registerStore } from '@wordpress/data'
 import { actions } from './actions'
+import { reducer } from './reducers'
 
 export const settingsStore = registerStore('enogwe/settings', { reducer, actions })

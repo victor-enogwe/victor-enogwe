@@ -1,8 +1,8 @@
 // Type definitions for @wordpress/element
 // Definitions by: Derek P Sifford <dereksifford@gmail.com>
 
-import * as R from '@types/react';
-import * as RD from '@types/react-dom';
+import * as R from 'react';
+import * as RD from 'react-dom';
 
 declare global {
     namespace React {
