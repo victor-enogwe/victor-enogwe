@@ -2,8 +2,8 @@
 // Project: https://github.com/WordPress/gutenberg/tree/master/packages/editor
 // Definitions by: Derek P Sifford <https://github.com/dsifford>
 
-import { ToolbarButton } from '@wordpress/components';
-import { Component, ComponentType, CSSProperties, HTMLProps } from 'react';
+import { ToolbarButton } from '@types/@wordpress/components';
+import { Component, ComponentType, CSSProperties, HTMLProps } from '@types/react';
 
 export namespace AlignmentToolbar {
     interface Props {

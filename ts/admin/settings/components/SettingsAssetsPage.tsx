@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { useContext } from '@wordpress/element'
-import { PanelBody, Panel, PanelRow } from '@wordpress/components'
+import { useContext } from '@types/@wordpress/element'
+import { PanelBody, Panel, PanelRow } from '@types/@wordpress/components'
 import { UPLOAD_LOGO, UPLOAD_FAVICON, UPLOAD_PICTURE, DELETE_FAVICON, DELETE_PICTURE, DELETE_LOGO } from '../store/actions'
 import { StateContext } from './SettingsApp'
 import { SettingsUploadImage } from './SettingsUploadImage'

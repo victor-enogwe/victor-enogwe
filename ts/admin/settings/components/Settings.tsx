@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { Row, Col, CardHeader, CardTitle, CardBody } from 'reactstrap'
 import classnames from 'classnames'
-import { PropsWithChildren } from '@wordpress/element'
-import { __ } from '@wordpress/i18n'
-import { IconButton } from '@wordpress/components'
+import { PropsWithChildren } from '@types/@wordpress/element'
+import { __ } from '@types/@wordpress/i18n'
+import { IconButton } from '@types/@wordpress/components'
 import { SettingsSidebar } from './SettingsSIdebar'
 import { tabNames, tabIcons } from '../constants'
-import { SettingsPageProps } from 'global'
+import { SettingsPageProps } from '@types/global'
 import { SettingsPage } from './SettingsPage'
 
 /**

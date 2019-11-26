@@ -3,8 +3,8 @@
 // Definitions by: Daniel Mejta <https://github.com/mejta>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-import * as React from 'react';
-import { ToolbarButton } from '@wordpress/components';
+import * as React from '@types/react';
+import { ToolbarButton } from '@types/@wordpress/components';
 
 export const InspectorControls: React.ComponentType;
 

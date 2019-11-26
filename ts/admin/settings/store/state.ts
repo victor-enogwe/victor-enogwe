@@ -1,4 +1,4 @@
-import { EnogweState } from 'global'
+import { EnogweState } from '@types/global'
 import StateJson from './state.json'
 
 export const State: EnogweState.Settings = {

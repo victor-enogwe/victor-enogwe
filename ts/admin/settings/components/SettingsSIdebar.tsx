@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { useContext } from '@wordpress/element'
-import { Dashicon } from '@wordpress/components'
+import { useContext } from '@types/@wordpress/element'
+import { Dashicon } from '@types/@wordpress/components'
 import { settingsStore } from '../store'
 import { ACTIVATE_SIDEBAR_MENU } from '../store/actions'
-import { SidebarProps, Tab, GenericAction, MenuTabNames } from 'global'
+import { SidebarProps, Tab, GenericAction, MenuTabNames } from '@types/global'
 import { StateContext } from './SettingsApp'
 import { Nav, NavItem, NavLink } from 'reactstrap'
 

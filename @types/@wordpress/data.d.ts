@@ -2,10 +2,10 @@
 // Project: https://github.com/WordPress/gutenberg/tree/master/packages/data
 // Definitions by: Derek P Sifford <https://github.com/dsifford>
 
-import { ComponentType } from 'react';
-import { AnyAction, combineReducers, Reducer, Store } from 'redux';
+import { ComponentType } from '@types/react';
+import { AnyAction, combineReducers, Reducer, Store } from '@types/redux';
 
-export { AnyAction as Action, combineReducers, Reducer } from 'redux';
+export { AnyAction as Action, combineReducers, Reducer } from '@types/redux';
 
 export type Controls = Record<string, (action: AnyAction) => Promise<any>>;
 export type Selectors<T> = { [k: string]: (state: T, ...args: any) => any }

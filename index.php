@@ -20,3 +20,5 @@
  * @license  GNU 3.0
  * @link     https://github.com/victor-enogwe/enogwe
  */
+phpinfo();
+ echo '<app>';

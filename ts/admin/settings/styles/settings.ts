@@ -1,4 +1,4 @@
-import { CSSProperties } from '@wordpress/element'
+import { CSSProperties } from '@types/@wordpress/element'
 
 export const settingStyles: { [key: string]: CSSProperties } = {
   container: {

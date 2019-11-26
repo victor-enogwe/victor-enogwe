@@ -10,7 +10,7 @@ import {
     HTMLProps,
     ReactElement,
     ReactNode,
-} from 'react';
+} from '@types/react';
 
 export namespace Button {
     interface Props extends HTMLProps<HTMLButtonElement> {

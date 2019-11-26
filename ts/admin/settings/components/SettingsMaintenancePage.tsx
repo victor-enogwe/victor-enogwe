@@ -1,4 +1,4 @@
-import { Fragment } from '@wordpress/element'
+import { Fragment } from '@types/@wordpress/element'
 import * as React from 'react'
 
 export const SettingsMaintenancePage = () => {

@@ -1,4 +1,4 @@
-import { registerStore } from '@wordpress/data'
+import { registerStore } from '@types/@wordpress/data'
 import { reducer } from './reducers'
 import { actions } from './actions'
 

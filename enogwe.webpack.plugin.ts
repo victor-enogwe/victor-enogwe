@@ -1,7 +1,7 @@
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
 import { sync } from 'fast-glob'
 import { createReadStream, createWriteStream, existsSync, mkdirSync } from 'fs'
-import { IEnogweWebpackPlugin } from 'global'
+import { IEnogweWebpackPlugin } from '@types/global'
 import { runCLI } from 'jest'
 import path from 'path'
 import webpack from 'webpack'

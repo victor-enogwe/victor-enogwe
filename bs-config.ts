@@ -1,4 +1,3 @@
-
 /*
  |--------------------------------------------------------------------------
  | Browser-sync config file
@@ -12,58 +11,60 @@
  |
  |
  */
-import browserSync from 'browser-sync'
-import path from 'path'
+import browserSync from 'browser-sync';
+import { config, DotenvParseOutput } from 'dotenv';
+import path from 'path';
 
-const files = ['./lib', './assets', '*.php', './style.css']
+const { WORDPRESS_URL } = config().parsed as DotenvParseOutput
+const files = ['./lib', './assets', '*.php', './style.css'];
 
 const defaults: browserSync.Options = {
   files,
   watchEvents: ['change', 'add'],
-  'watch': false,
-  'single': false,
-  'watchOptions': {
-    'ignoreInitial': true
+  watch: false,
+  single: false,
+  watchOptions: {
+    ignoreInitial: true
   },
-  'server': false,
-  'port': 3000,
-  'serveStatic': [],
-  'ghostMode': {
-    'clicks': true,
-    'scroll': true,
-    'forms': {
-      'submit': true,
-      'inputs': true,
-      'toggles': true
+  server: false,
+  port: 3000,
+  serveStatic: [],
+  ghostMode: {
+    clicks: true,
+    scroll: true,
+    forms: {
+      submit: true,
+      inputs: true,
+      toggles: true
     }
   },
-  'logLevel': 'info',
-  'logPrefix': 'Browsersync',
-  'logConnections': false,
-  'logFileChanges': true,
-  'logSnippet': true,
-  'rewriteRules': [],
-  'open': false,
-  'browser': 'default',
-  'cors': false,
-  'xip': false,
-  'reloadOnRestart': false,
-  'notify': true,
-  'scrollProportionally': true,
-  'scrollThrottle': 0,
-  'scrollRestoreTechnique': 'window.name',
-  'scrollElements': [],
-  'scrollElementMapping': [],
-  'reloadDelay': 0,
-  'reloadDebounce': 500,
-  'reloadThrottle': 0,
-  'plugins': [],
-  'injectChanges': true,
-  'minify': true,
-  'localOnly': false,
-  'codeSync': true,
-  'timestamps': true,
-  'clientEvents': [
+  logLevel: 'info',
+  logPrefix: 'Browsersync',
+  logConnections: false,
+  logFileChanges: true,
+  logSnippet: true,
+  rewriteRules: [],
+  open: false,
+  browser: 'default',
+  cors: false,
+  xip: false,
+  reloadOnRestart: false,
+  notify: true,
+  scrollProportionally: true,
+  scrollThrottle: 0,
+  scrollRestoreTechnique: 'window.name',
+  scrollElements: [],
+  scrollElementMapping: [],
+  reloadDelay: 0,
+  reloadDebounce: 500,
+  reloadThrottle: 0,
+  plugins: [],
+  injectChanges: true,
+  minify: true,
+  localOnly: false,
+  codeSync: true,
+  timestamps: true,
+  clientEvents: [
     'scroll',
     'scroll:element',
     'input:text',
@@ -72,30 +73,30 @@ const defaults: browserSync.Options = {
     'form:reset',
     'click'
   ],
-  'socket': {
-    'path': '/browser-sync/socket.io',
-    'clientPath': '/browser-sync',
-    'namespace': '/browser-sync',
-    'clients': { 'heartbeatTimeout': 5000 }
+  socket: {
+    path: '/browser-sync/socket.io',
+    clientPath: '/browser-sync',
+    namespace: '/browser-sync',
+    clients: { heartbeatTimeout: 5000 }
   },
-  'tagNames': {
-    'less': 'link',
-    'scss': 'link',
-    'css': 'link',
-    'jpg': 'img',
-    'jpeg': 'img',
-    'png': 'img',
-    'svg': 'img',
-    'gif': 'img',
-    'js': 'script'
+  tagNames: {
+    less: 'link',
+    scss: 'link',
+    css: 'link',
+    jpg: 'img',
+    jpeg: 'img',
+    png: 'img',
+    svg: 'img',
+    gif: 'img',
+    js: 'script'
   }
-}
+};
 
 const app = {
   ...defaults,
   ui: { port: 3001 },
-  proxy: 'localhost:8080'
-}
+  proxy: WORDPRESS_URL
+};
 
 const coverageJs = {
   ...defaults,
@@ -106,7 +107,7 @@ const coverageJs = {
     baseDir: path.resolve(__dirname, 'coverage/js/lcov-report/'),
     index: 'index.html'
   }
-}
+};
 
 const coveragePhp = {
   ...defaults,
@@ -117,10 +118,10 @@ const coveragePhp = {
     baseDir: path.resolve(__dirname, 'coverage/php/'),
     index: 'index.html'
   }
-}
+};
 
 export default {
   app,
   coverageJs,
   coveragePhp
-}
+};

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Fragment } from '@wordpress/element'
+import { Fragment } from '@types/@wordpress/element'
 /**
  * SettingsLayoutPage Component
  *

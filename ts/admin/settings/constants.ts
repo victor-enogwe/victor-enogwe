@@ -1,4 +1,4 @@
-import { MenuTabNames, TabIcons } from 'global'
+import { MenuTabNames, TabIcons } from '@types/global'
 
 export const tabNames: MenuTabNames[] = ['Assets', 'Layouts', 'Typography', 'Socials', 'Integrations', 'Maintenance', 'Documentation']
 export const tabIcons: TabIcons = {

@@ -1,5 +1,5 @@
-import { EnogweState, GenericAction, MediaInfo, MediaProps } from 'global'
-import WPAPI from 'wpapi/superagent'
+import { EnogweState, GenericAction, MediaInfo, MediaProps } from '@types/global'
+import WPAPI from '@types/wpapi/superagent'
 import { settingsStore } from '.'
 import { defaultMediaConfig } from '../constants'
 import { actions, ACTIVATE_MAINTENENCE_MODE, DEACTIVATE_MAINTENENCE_MODE, REFRESH_STATE } from './actions'
