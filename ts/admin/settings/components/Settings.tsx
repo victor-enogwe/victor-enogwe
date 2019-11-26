@@ -6,7 +6,7 @@ import { __ } from '@types/@wordpress/i18n'
 import { IconButton } from '@types/@wordpress/components'
 import { SettingsSidebar } from './SettingsSIdebar'
 import { tabNames, tabIcons } from '../constants'
-import { SettingsPageProps } from '@types/global'
+import { SettingsPageProps } from 'global'
 import { SettingsPage } from './SettingsPage'
 
 /**

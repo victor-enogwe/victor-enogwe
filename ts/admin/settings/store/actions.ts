@@ -1,4 +1,4 @@
-import { MediaInfo, GenericAction, MenuTabNames, ApiStatus, EnogweState } from '@types/global'
+import { MediaInfo, GenericAction, MenuTabNames, ApiStatus, EnogweState } from 'global'
 import { State } from './state'
 
 export const ACTIVATE_MAINTENENCE_MODE = 'ACTIVATE_MAINTENENCE_MODE'

@@ -1,4 +1,4 @@
-import { EnogweState, GenericAction, MediaInfo, MediaProps } from '@types/global'
+import { EnogweState, GenericAction, MediaInfo, MediaProps } from 'global'
 import WPAPI from '@types/wpapi/superagent'
 import { settingsStore } from '.'
 import { defaultMediaConfig } from '../constants'

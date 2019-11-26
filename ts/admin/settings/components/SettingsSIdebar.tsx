@@ -3,7 +3,7 @@ import { useContext } from '@types/@wordpress/element'
 import { Dashicon } from '@types/@wordpress/components'
 import { settingsStore } from '../store'
 import { ACTIVATE_SIDEBAR_MENU } from '../store/actions'
-import { SidebarProps, Tab, GenericAction, MenuTabNames } from '@types/global'
+import { SidebarProps, Tab, GenericAction, MenuTabNames } from 'global'
 import { StateContext } from './SettingsApp'
 import { Nav, NavItem, NavLink } from 'reactstrap'
 

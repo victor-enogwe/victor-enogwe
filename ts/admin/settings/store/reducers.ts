@@ -1,6 +1,6 @@
 import { combineReducers } from '@types/@wordpress/data'
 import { State } from './state'
-import { MediaInfo, GenericAction, MenuTabNames, Sidebar, ApiStatus, EnogweState } from '@types/global'
+import { MediaInfo, GenericAction, MenuTabNames, Sidebar, ApiStatus, EnogweState } from 'global'
 import {
     ACTIVATE_SIDEBAR_MENU,
     UPLOAD_LOGO,

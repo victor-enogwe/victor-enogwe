@@ -2,7 +2,7 @@ import * as React from 'react'
 import { PropsWithChildren } from '@types/@wordpress/element'
 import { __ } from '@types/@wordpress/i18n'
 import { IconButton, Placeholder } from '@types/@wordpress/components'
-import { MediaInfo, ImageProps } from '@types/global'
+import { MediaInfo, ImageProps } from 'global'
 import { settingStyles } from '../styles/settings'
 import { Card, Row, Col, CardBody } from 'reactstrap'
 import classnames = require('classnames')
