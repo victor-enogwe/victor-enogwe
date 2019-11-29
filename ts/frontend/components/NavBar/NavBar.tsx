@@ -1,19 +1,8 @@
-import React, { useState } from "react";
-import {
-    Collapse,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Nav,
-    Navbar,
-    NavbarBrand,
-    NavbarToggler,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown
-} from "reactstrap";
+import React, { useState } from 'react';
+import { Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, UncontrolledDropdown } from 'reactstrap';
+import './NavBar.scss';
 
-const Example = (props: any) => {
+export const NavBar = (props: any) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
@@ -51,5 +40,3 @@ const Example = (props: any) => {
         </div>
     );
 };
-
-export default Example;

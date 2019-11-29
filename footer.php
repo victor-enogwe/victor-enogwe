@@ -10,7 +10,7 @@
  * License: GNU 3.0
  * License URI:  https://
  * Text Domain: enogwe
- * File: index.php
+ * File: footer.php
  * ------------------------------------
  * Php Version 7
  *
@@ -21,5 +21,8 @@
  * @link     https://github.com/victor-enogwe/enogwe
  */
 
-get_header();
-get_footer();
+?>
+<?php wp_footer(); ?>
+
+</body>
+</html>

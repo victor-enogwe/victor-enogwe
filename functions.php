@@ -24,8 +24,8 @@
 namespace Enogwe;
 
 // Exit if accessed directly.
-defined('WPINC') || exit;
+defined( 'WPINC' ) || exit;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-new Theme;
+new Theme();

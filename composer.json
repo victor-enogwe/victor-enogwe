@@ -2,15 +2,14 @@
     "name": "victorenogwe/enogwe",
     "description": "enogwe wordpress theme",
     "type": "project",
-	"license": "GNU 3.0",
-	"authors": [
-		{
-			"name": "victor-enogwe",
-			"email": "victor.enogwe@gmail.com"
-		}
-	],
-    "require": {
-    },
+    "license": "GNU 3.0",
+    "authors": [
+        {
+            "name": "victor-enogwe",
+            "email": "victor.enogwe@gmail.com"
+        }
+    ],
+    "require": {},
     "require-dev": {
         "10up/wp_mock": "0.4.2",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
@@ -18,7 +17,7 @@
         "squizlabs/php_codesniffer": "^3.4",
         "wp-coding-standards/wpcs": "^2.2"
     },
-	"config": {
+    "config": {
         "sort-packages": true
     },
     "autoload": {

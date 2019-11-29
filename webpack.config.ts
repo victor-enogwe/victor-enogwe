@@ -12,14 +12,14 @@ const wpDependencies = ['components', 'element', 'blocks', 'utils', 'date', 'dat
 const extractScssPlugin = new ExtractText({ filename: '[name].css' })
 const LoaderPlugin = new webpack.LoaderOptionsPlugin({ minimize: !debug, debug })
 const terserOptions: Terser.TerserPluginOptions = {
-  extractComments: true,
-  terserOptions: {
-    compress: true,
-    mangle: true,
-    keep_classnames: false,
-    keep_fnames: false,
-    ecma: 5
-  }
+    extractComments: true,
+    terserOptions: {
+        compress: true,
+        mangle: true,
+        keep_classnames: false,
+        keep_fnames: false,
+        ecma: 5
+    }
 }
 const TerserPlugin = new Terser(terserOptions)
 const EnvPlugin = new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development') })
@@ -31,79 +31,80 @@ const plugins: webpack.Plugin[] = [EnvPlugin, LoaderPlugin]
 const camelize = (dependency: string) => dependency.replace(/-\w/g, (match) => match.replace('-', '').toUpperCase())
 
 const scssConfig = {
-  use: [
-    { loader: 'css-loader' },
-    { loader: 'sass-loader', options: { outputStyle: debug ? 'nested' : 'compressed' } }
-  ]
+    use: [
+        { loader: 'css-loader' },
+        { loader: 'sass-loader', options: { outputStyle: debug ? 'nested' : 'compressed' } }
+    ]
 }
 
 const externalsWp = wpDependencies.reduce((externalPlugins, dependency) => ({
-  ...externalPlugins, [`@wordpress/${dependency}`]: { this: ['wp', camelize(dependency)] }
+    ...externalPlugins, [`@wordpress/${dependency}`]: { this: ['wp', camelize(dependency)] }
 }), {})
 
 const externalsRs = rsDependencies.reduce((externalPlugins, dependency) => ({
-  ...externalPlugins, [`reactstrap/${dependency}`]: { this: ['Reactstrap', camelize(dependency)] }
+    ...externalPlugins, [`reactstrap/${dependency}`]: { this: ['Reactstrap', camelize(dependency)] }
 }), {})
 
 const externals = Object.assign(
-  externalsWp, externalsRs, { 'react-dom': 'ReactDOM', react: 'React', jquery: 'jQuery' }
+    externalsWp, externalsRs, { 'react-dom': 'ReactDOM', react: 'React', jquery: 'jQuery' }
 )
 
 const defaultConfig: webpack.Configuration = {
-  context: path.resolve(__dirname, 'sass'),
-  mode: debug ? 'development' : 'production',
-  devtool: debug ? 'inline-source-map' : false,
-  plugins,
-  stats: { children: false },
-  optimization: { minimize: !debug, minimizer: [TerserPlugin] }
+    mode: debug ? 'development' : 'production',
+    devtool: debug ? 'inline-source-map' : false,
+    plugins,
+    stats: { children: false },
+    optimization: { minimize: !debug, minimizer: [TerserPlugin] }
 }
 
 const jsConfig = {
-  ...defaultConfig,
-  context: path.resolve(__dirname, 'ts'),
-  plugins: [...defaultConfig.plugins as webpack.Plugin[], EnogweWebpackPluginInstance, BrowserSyncPluginJs, BrowserSyncPluginPhp],
-  externals,
-  entry: {
-    enogwe: './enogwe.tsx',
-    'admin/settings': './admin/settings/index.tsx'
-  },
-  output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'assets/js'),
-    libraryTarget: 'this'
-  },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-    modules: ['node_modules']
-  },
-  module: {
-    rules: [
-      { test: /\.tsx?$/, loader: 'awesome-typescript-loader', exclude: /node_modules|coverage|assets|vendor/ },
-      { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
-    ]
-  }
+    ...defaultConfig,
+    context: path.resolve(__dirname, 'ts'),
+    plugins: [...defaultConfig.plugins as webpack.Plugin[], EnogweWebpackPluginInstance, BrowserSyncPluginJs, BrowserSyncPluginPhp],
+    externals,
+    entry: {
+        'frontend/enogwe': './frontend/enogwe.tsx',
+        'admin/settings': './admin/settings/index.tsx'
+    },
+    output: {
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'assets/js'),
+        libraryTarget: 'this'
+    },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+        modules: ['node_modules']
+    },
+    module: {
+        rules: [
+            { test: /\.tsx?$/, loader: 'awesome-typescript-loader', exclude: /node_modules|coverage|assets|vendor/ },
+            { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
+            { test: /\.(sass|scss|css)$/, use: ['style-loader', ...scssConfig.use] }
+        ]
+    }
 }
 
 const cssConfig = {
-  ...defaultConfig,
-  output: {
-    filename: '[name].css',
-    path: path.resolve(__dirname, 'assets/css')
-  },
-  plugins: [extractScssPlugin, ...defaultConfig.plugins as webpack.Plugin[], BrowserSyncPluginApp],
-  entry: {
-    enogwe: './enogwe.scss',
-    'admin/settings': './admin/settings.scss'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        use: extractScssPlugin.extract(scssConfig)
-      }
-    ]
-  }
+    ...defaultConfig,
+    context: path.resolve(__dirname, 'sass'),
+    entry: {
+        'frontend/enogwe': './frontend/enogwe.scss',
+        'admin/settings': './admin/settings.scss'
+    },
+    output: {
+        filename: '[name].css',
+        path: path.resolve(__dirname, 'assets/css')
+    },
+    plugins: [extractScssPlugin, ...defaultConfig.plugins as webpack.Plugin[], BrowserSyncPluginApp],
+    module: {
+        rules: [
+            {
+                test: /\.(css|sass|scss)$/,
+                exclude: /node_modules/,
+                use: extractScssPlugin.extract(scssConfig)
+            }
+        ]
+    }
 }
 
 export default [cssConfig, jsConfig]

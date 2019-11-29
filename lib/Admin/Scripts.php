@@ -40,8 +40,6 @@ if ( ! class_exists( Scripts::class ) ) {
 	 * @link     https://github.com/victor-enogwe/enogwe
 	 */
 	class Scripts {
-        private $_script_path = 'assets/js/';
-        private $_style_path = 'assets/css/';
 
 		/**
 		 * __construct
@@ -49,65 +47,46 @@ if ( ! class_exists( Scripts::class ) ) {
 		 * @return void
 		 */
 		public function __construct() {
-			$this->_init();
+			$this->init();
 		}
 
 		/**
-		 * _init
+		 * init
 		 *
 		 * @return void
 		 */
-		private function _init() {
+		private function init() {
 			if ( is_admin() && current_user_can( 'manage_options' ) ) {
-				$this->_addActionSettingsScreen();
+				$this->add_action_settings_screen();
 			}
 		}
-
 
 		/**
 		 * Register Settings Scripts
 		 *
-		 * @param string $hook page hook id
+		 * @param string $hook page hook id.
 		 *
 		 * @return void
 		 */
-		public function settingsScripts( $hook ) {
-			if ( $hook !== 'toplevel_page_enogwe-theme-settings' ) {
+		public function register_scripts( $hook ) {
+			if ( 'toplevel_page_enogwe-theme-settings' !== $hook ) {
 				return;
 			}
 
-            $theme_dir =  trailingslashit( get_stylesheet_directory_uri() );
-
-            $script_path = $theme_dir . $this->_script_path . 'admin/settings.js';
-            $style_path = $theme_dir . $this->_style_path . 'admin/settings.css';
-
-            wp_register_style(
-                'enogwe_settings',
-                $style_path,
-                array('wp-edit-blocks'),
-                false
-            );
-
-            wp_register_script(
-                'reactstrap',
-                $theme_dir . $this->_script_path . 'reactstrap.min.js',
-                array('wp-element'),
-                false,
-                true
-            );
+			wp_register_style( 'enogwe_settings', ENOGWE_ADMIN_ASSETS . 'css/settings.css', array( 'wp-edit-blocks' ), ENOGWE_VERSION );
 
 			wp_register_script(
 				'enogwe_settings',
-				$script_path,
+				ENOGWE_ADMIN_ASSETS . 'js/settings.js',
 				array( 'wp-editor', 'wp-element', 'wp-components', 'reactstrap' ),
-				false,
+				ENOGWE_VERSION,
 				true
-            );
+			);
 
-            wp_localize_script( 'enogwe_settings', 'cred', array( 'nonce' => wp_create_nonce( 'wp_rest' ) ) );
+			wp_localize_script( 'enogwe_settings', 'cred', array( 'nonce' => wp_create_nonce( 'wp_rest' ) ) );
 
 			wp_enqueue_media();
-            wp_enqueue_style('enogwe_settings');
+			wp_enqueue_style( 'enogwe_settings' );
 			wp_enqueue_script( 'enogwe_settings' );
 		}
 
@@ -116,10 +95,8 @@ if ( ! class_exists( Scripts::class ) ) {
 		 *
 		 * @return void
 		 */
-		private function _addActionSettingsScreen() {
-			add_action( 'admin_enqueue_scripts', array( $this, 'settingsScripts' ) );
-        }
-
-
+		private function add_action_settings_screen() {
+			add_action( 'admin_enqueue_scripts', array( $this, 'register_scripts' ) );
+		}
 	}
 }

@@ -28,36 +28,36 @@ namespace Enogwe\Admin;
 //  Exit if accessed directly.
 defined( 'WPINC' ) || exit;
 
-if ( ! class_exists( Mainntenance::class ) ) {
+if ( ! class_exists( Maintenance::class ) ) {
 
 	class Maintenance {
-		private $_maintenance = false;
+		private $maintenance = false;
 
 		public function __construct() {
-            add_action( 'wp_loaded', array($this, 'init') );
+			add_action( 'wp_loaded', array( $this, 'init' ) );
 		}
 
 		public function init() {
-            $this->_activate(json_decode( get_theme_mod( 'settings' ) )['maintenance'] );
-        }
+			$this->activate( json_decode( get_theme_mod( 'settings' ) )['maintenance'] );
+		}
 
-        private function _activate($settings) {
-            global $pagenow;
-            if ( $pagenow !== 'wp-login.php' && ! current_user_can( 'manage_options' ) && ! is_admin() ) {
-                $this->_headers($settings['duration']);
+		private function activate( $settings ) {
+			global $pagenow;
+			if ( 'wp-login.php' !== $pagenow && ! current_user_can( 'manage_options' ) && ! is_admin() ) {
+				$this->headers( $settings['duration'] );
 
-                die();
-            }
-        }
+				die();
+			}
+		}
 
-        private function _isCapable($capabilities) {
-            return array_reduce($capabilities, current_user_can);
-        }
+		private function is_capable( $capabilities ) {
+			return array_reduce( $capabilities, current_user_can );
+		}
 
-        private  function _headers ($retry) {
-            header( $_SERVER["SERVER_PROTOCOL"] . ' 503 Service Temporarily Unavailable', true, 503 );
-            header( 'Content-Type: text/html; charset=utf-8' );
-            header( 'Retry-After: ' . $retry );
-        }
+		private function headers( $retry ) {
+			header( $_SERVER['SERVER_PROTOCOL'] . ' 503 Service Temporarily Unavailable', true, 503 );
+			header( 'Content-Type: text/html; charset=utf-8' );
+			header( 'Retry-After: ' . $retry );
+		}
 	}
 }

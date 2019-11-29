@@ -40,62 +40,62 @@ if ( ! class_exists( RestApi::class ) ) {
 	 * @link     https://github.com/victor-enogwe/enogwe
 	 */
 	class RestApi {
-		private $_baseUrl;
+		private $base_url;
 		/**
 		 * __construct
 		 *
 		 * @return void
 		 */
 		public function __construct() {
-			$this->_baseUrl = 'enogwe/v1';
+			$this->base_url = 'enogwe/v1';
 			add_action( 'rest_api_init', array( $this, 'routes' ) );
 		}
 
 		public function routes() {
 			register_rest_route(
-				$this->_baseUrl,
+				$this->base_url,
 				'/settings',
 				array(
 					array(
 						'methods'  => 'GET',
-						'callback' => array( $this, 'getSettings' ),
+						'callback' => array( $this, 'get_settings' ),
 					),
 					array(
 						'methods'             => 'POST',
-						'callback'            => array( $this, 'setSettings' ),
+						'callback'            => array( $this, 'set_settings' ),
 						'args'                => array( 'settings' => array( 'required' => true ) ),
-						'permission_callback' => array( $this, 'canManageOptions' ),
+						'permission_callback' => array( $this, 'can_manage_options' ),
 					),
 				)
 			);
 		}
 
 		/**
-		 * CanManageOptions
+		 * Can_manage_options
 		 *
 		 * @return void
 		 */
-		public function canManageOptions() {
+		public function can_manage_options() {
 			return current_user_can( 'manage_options' );
 		}
 
 		/**
-		 * GetSettings
+		 * Get_settings
 		 *
 		 * @return void
 		 */
-		public function getSettings() {
+		public function get_settings() {
 			return get_theme_mod( 'settings', '{}' );
 		}
 
 		/**
-		 * SetSettings
+		 * Set_settings
 		 *
 		 * @param  mixed $request
 		 *
 		 * @return void
 		 */
-		public function setSettings( $request ) {
+		public function set_settings( $request ) {
 			$settings = $request->get_params( 'settings' );
 			return set_theme_mod( 'settings', $settings );
 		}

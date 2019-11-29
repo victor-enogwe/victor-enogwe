@@ -1,0 +1,12 @@
+.nav-pills {
+    cursor: pointer !important;
+    .nav-link {
+       &.active, .show > .nav-link {
+            color: #fff !important;
+            background-color: #0073aa;
+       }
+       :hover {
+            color: #00a0d2 !important;
+       }
+    }
+}

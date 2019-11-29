@@ -44,18 +44,18 @@ if ( ! class_exists( Settings::class ) ) {
 		 * @return void
 		 */
 		public function __construct() {
-			$this->_init();
+			$this->init();
 		}
 
 		/**
-		 * _init
+		 * init
 		 *
 		 * @return void
 		 */
-		private function _init() {
+		private function init() {
 			if ( is_admin() && current_user_can( 'manage_options' ) ) {
-				add_action( 'admin_menu', array( $this, 'registerAdminMenu' ) );
-				add_action( 'current_screen', array( $this, 'redirectCustomizer' ) );
+				add_action( 'admin_menu', array( $this, 'register_admin_menu' ) );
+				add_action( 'current_screen', array( $this, 'redirect_customizer' ) );
 			}
 		}
 
@@ -64,13 +64,13 @@ if ( ! class_exists( Settings::class ) ) {
 		 *
 		 * @return void
 		 */
-		public function registerAdminMenu() {
+		public function register_admin_menu() {
 			add_menu_page(
 				esc_html__( 'Enogwe Settings', 'enogwe' ),
 				esc_html__( 'Enogwe Settings', 'enogwe' ),
 				'manage_options',
 				'enogwe-theme-settings',
-				array( $this, 'createPage' ),
+				array( $this, 'create_page' ),
 				'dashicons-admin-settings'
 			);
 		}
@@ -80,7 +80,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 *
 		 * @return void
 		 */
-		public function createPage() {
+		public function create_page() {
 			echo '<div class="wrap"><div id="enogwe_theme_settings"></div></div>';
 		}
 
@@ -92,8 +92,8 @@ if ( ! class_exists( Settings::class ) ) {
 		 *
 		 * @return void
 		 */
-		public function redirectCustomizer( $screen ) {
-			if ( isset( $screen->base ) && $screen->base == 'customize' ) {
+		public function redirect_customizer( $screen ) {
+			if ( isset( $screen->base ) && 'customize' === $screen->base ) {
 				wp_redirect( admin_url() . 'admin.php?page=enogwe-theme-settings' );
 				exit();
 			}

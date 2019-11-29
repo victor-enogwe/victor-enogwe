@@ -26,7 +26,7 @@
         "import-spacing": true,
         "ter-indent": [
             true,
-            2
+            4
         ],
         "indent": [
             true,
