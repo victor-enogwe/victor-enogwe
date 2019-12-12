@@ -63,12 +63,12 @@ const jsConfig = {
     plugins: [...defaultConfig.plugins as webpack.Plugin[], EnogweWebpackPluginInstance, BrowserSyncPluginJs, BrowserSyncPluginPhp],
     externals,
     entry: {
-        'frontend/enogwe': './frontend/enogwe.tsx',
-        'admin/settings': './admin/settings/index.tsx'
+        'frontend/js/enogwe': './frontend/enogwe.tsx',
+        'admin/js/settings': './admin/settings/index.tsx'
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'assets/js'),
+        path: path.resolve(__dirname, 'assets'),
         libraryTarget: 'this'
     },
     resolve: {
@@ -88,12 +88,12 @@ const cssConfig = {
     ...defaultConfig,
     context: path.resolve(__dirname, 'sass'),
     entry: {
-        'frontend/enogwe': './frontend/enogwe.scss',
-        'admin/settings': './admin/settings.scss'
+        'frontend/css/enogwe': './frontend/enogwe.scss',
+        'admin/css/settings': './admin/settings.scss'
     },
     output: {
         filename: '[name].css',
-        path: path.resolve(__dirname, 'assets/css')
+        path: path.resolve(__dirname, 'assets')
     },
     plugins: [extractScssPlugin, ...defaultConfig.plugins as webpack.Plugin[], BrowserSyncPluginApp],
     module: {

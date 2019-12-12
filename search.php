@@ -1,6 +1,8 @@
 <?php
 /**
- * Enogwe WordPress Theme.
+ * Search results page
+ *
+ * Methods for TimberHelper can be found in the /lib sub-directory
  * ------------------------------------
  * Theme Name: enogwe
  * Description: Enogwe WordPress Theme
@@ -10,7 +12,7 @@
  * License: GNU 3.0
  * License URI:  https://
  * Text Domain: enogwe
- * File: footer.php
+ * File: page.php
  * ------------------------------------
  * Php Version 7
  *
@@ -20,13 +22,9 @@
  * @license  GNU 3.0
  * @link     https://github.com/victor-enogwe/enogwe
  */
+$templates        = array( 'search.twig', 'archive.twig', 'index.twig' );
+$context          = Timber::context();
+$context['title'] = 'Search results for ' . get_search_query();
+$context['posts'] = new Timber\PostQuery();
 
-$timberContext = $GLOBALS['timberContext']; // @codingStandardsIgnoreFile
-if ( ! isset( $timberContext ) ) {
-	throw new \Exception( 'Timber context not set in footer.' );
-}
-$timberContext['content'] = ob_get_contents();
-ob_end_clean();
-$templates = array( 'page-plugin.twig' );
-
-Timber::render( $templates, $timberContext );
+Timber::render( $templates, $context );

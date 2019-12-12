@@ -9,7 +9,10 @@
             "email": "victor.enogwe@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "limenius/react-renderer": "^4.0",
+        "timber/timber": "^1.13"
+    },
     "require-dev": {
         "10up/wp_mock": "0.4.2",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",

@@ -8,6 +8,7 @@ class ComposerStaticInitce44a488ed18f5588f6694365f940478
 {
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
     );
 
@@ -21,9 +22,20 @@ class ComposerStaticInitce44a488ed18f5588f6694365f940478
             'Webmozart\\Assert\\' => 17,
             'WP_Mock\\' => 8,
         ),
+        'T' => 
+        array (
+            'Twig\\' => 5,
+            'Timber\\' => 7,
+        ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
+            'Symfony\\Component\\Process\\' => 26,
+        ),
+        'L' => 
+        array (
+            'Limenius\\ReactRenderer\\' => 23,
         ),
         'E' => 
         array (
@@ -35,6 +47,10 @@ class ComposerStaticInitce44a488ed18f5588f6694365f940478
             'Doctrine\\Instantiator\\' => 22,
             'DeepCopy\\' => 9,
             'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => 55,
+        ),
+        'C' => 
+        array (
+            'Composer\\Installers\\' => 20,
         ),
     );
 
@@ -53,9 +69,29 @@ class ComposerStaticInitce44a488ed18f5588f6694365f940478
         array (
             0 => __DIR__ . '/..' . '/10up/wp_mock/php/WP_Mock',
         ),
+        'Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'Timber\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/timber/timber/lib',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
         'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
+        ),
+        'Symfony\\Component\\Process\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/process',
+        ),
+        'Limenius\\ReactRenderer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/limenius/react-renderer/src/Limenius/ReactRenderer',
         ),
         'Enogwe\\Test\\' => 
         array (
@@ -77,14 +113,43 @@ class ComposerStaticInitce44a488ed18f5588f6694365f940478
         array (
             0 => __DIR__ . '/..' . '/dealerdirect/phpcodesniffer-composer-installer/src',
         ),
+        'Composer\\Installers\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
+        ),
+    );
+
+    public static $fallbackDirsPsr4 = array (
+        0 => __DIR__ . '/..' . '/asm89/twig-cache-extension/lib',
     );
 
     public static $prefixesPsr0 = array (
+        'T' => 
+        array (
+            'Twig_' => 
+            array (
+                0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
+        ),
+        'R' => 
+        array (
+            'Routes' => 
+            array (
+                0 => __DIR__ . '/..' . '/upstatement/routes',
+            ),
+        ),
         'P' => 
         array (
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
+            ),
+        ),
+        'N' => 
+        array (
+            'Nacmartin\\PhpExecJs' => 
+            array (
+                0 => __DIR__ . '/..' . '/nacmartin/phpexecjs/src',
             ),
         ),
         'M' => 
@@ -97,6 +162,7 @@ class ComposerStaticInitce44a488ed18f5588f6694365f940478
     );
 
     public static $classMap = array (
+        'AltoRouter' => __DIR__ . '/..' . '/altorouter/altorouter/AltoRouter.php',
         'Hamcrest\\Arrays\\IsArray' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArray.php',
         'Hamcrest\\Arrays\\IsArrayContaining' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContaining.php',
         'Hamcrest\\Arrays\\IsArrayContainingInAnyOrder' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContainingInAnyOrder.php',
@@ -721,6 +787,7 @@ class ComposerStaticInitce44a488ed18f5588f6694365f940478
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitce44a488ed18f5588f6694365f940478::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitce44a488ed18f5588f6694365f940478::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitce44a488ed18f5588f6694365f940478::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitce44a488ed18f5588f6694365f940478::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitce44a488ed18f5588f6694365f940478::$classMap;
 

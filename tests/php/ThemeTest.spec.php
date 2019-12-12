@@ -27,12 +27,28 @@ final class ThemeTest extends \WP_Mock\Tools\TestCase {
 			)
 		);
 
+		\WP_Mock::userFunction(
+			'wp_get_theme',
+			array(
+				'return' => array(),
+			)
+		);
+
+		\WP_Mock::userFunction(
+			'trailingslashit',
+			array(
+				'args'   => array( 'string' ),
+				'return' => 'string/',
+			)
+		);
+
 		$this->assertInstanceOf(
 			Theme::class,
 			new Theme()
 		);
 
 		$this->assertTrue( is_admin() );
-		$this->assertTrue( current_user_can('manage_options'));
+		$this->assertTrue( current_user_can( 'manage_options' ) );
+		$this->assertTrue( wp_get_theme() );
 	}
 }

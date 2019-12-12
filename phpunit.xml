@@ -15,6 +15,13 @@
             <directory suffix=".php">./lib</directory>
         </whitelist>
     </filter>
+
+    <testsuites>
+		<testsuite>
+			<directory prefix="test-" suffix=".spec.php">./tests/php/</directory>
+		</testsuite>
+	</testsuites>
+
     <php>
     </php>
 </phpunit>

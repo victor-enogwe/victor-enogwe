@@ -7,6 +7,7 @@ enogwe.zip
 
 /node_modules/
 /vendor/*
+/assets/
 !/vendor/composer/*
 /vendor/composer/installed.json
 !/vendor/autoload.php

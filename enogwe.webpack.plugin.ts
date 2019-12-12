@@ -14,9 +14,9 @@ import webpack from 'webpack'
  * @return {void}
  */
 function apply(this: IEnogweWebpackPlugin, compiler: webpack.Compiler): void {
-  compiler.hooks.afterEnvironment.tap(this.hook, this.copy)
-  compiler.hooks.watchRun.tapPromise(this.hook, this.run)
-  compiler.hooks.thisCompilation.tap(this.hook, this.tap)
+    compiler.hooks.afterEnvironment.tap(this.hook, this.copy)
+    compiler.hooks.watchRun.tapPromise(this.hook, this.run)
+    compiler.hooks.thisCompilation.tap(this.hook, this.tap)
 }
 
 /**
@@ -24,31 +24,31 @@ function apply(this: IEnogweWebpackPlugin, compiler: webpack.Compiler): void {
  *
  */
 function copy() {
-  try {
-    const reactstrap = path.resolve(__dirname, './assets/js/reactstrap.min.js')
-    const reactstrapExists = existsSync(reactstrap)
-    if (!reactstrapExists) {
-      const reactstrapDist = path.resolve(__dirname, 'node_modules/reactstrap/dist/reactstrap.min.js')
-      const reactstrapDistExists = existsSync(reactstrapDist)
-      if (reactstrapDistExists) {
-        const assetsDir = path.resolve(__dirname, './assets')
-        const assetsDirExists = existsSync(assetsDir)
-        if (!assetsDirExists) {
-          mkdirSync(assetsDir)
-          mkdirSync(`${assetsDir}/js`)
+    try {
+        const reactstrap = path.resolve(__dirname, './assets/frontend/js/reactstrap.min.js')
+        const reactstrapExists = existsSync(reactstrap)
+        if (!reactstrapExists) {
+            const reactstrapDist = path.resolve(__dirname, 'node_modules/reactstrap/dist/reactstrap.min.js')
+            const reactstrapDistExists = existsSync(reactstrapDist)
+            if (reactstrapDistExists) {
+                const assetsDir = path.resolve(__dirname, './assets/frontend')
+                const assetsDirExists = existsSync(assetsDir)
+                if (!assetsDirExists) {
+                    mkdirSync(assetsDir)
+                    mkdirSync(`${assetsDir}/js`)
+                }
+                createReadStream(reactstrapDist).pipe(createWriteStream(reactstrap))
+                    .once('open', () => console.info('copying reactstrap...'))
+                    .on('end', () => console.info('copied reactstrap'))
+            } else {
+                throw new Error('you need to run `npm install reactstrap`.')
+            }
+        } else {
+            throw new Error('reactstrap exists')
         }
-        createReadStream(reactstrapDist).pipe(createWriteStream(reactstrap))
-          .once('open', () => console.info('copying reactstrap...'))
-          .on('end', () => console.info('copied reactstrap'))
-      } else {
-        throw new Error('you need to run `npm install reactstrap`.')
-      }
-    } else {
-      throw new Error('reactstrap exists')
+    } catch (error) {
+        console.info(error.message)
     }
-  } catch (error) {
-    console.info(error.message)
-  }
 }
 
 /**
@@ -58,20 +58,20 @@ function copy() {
  * @returns {Promise<any>}
  */
 async function run(compiler: webpack.Compiler | any): Promise<any | void> {
-  return new Promise(async (resolve) => {
-    const changed = compiler.watchFileSystem.watcher.mtimes
-    const changedFiles = Object.keys(changed)
-    const hasChange = Boolean(changedFiles.length)
-    const jsChange = hasChange && changedFiles.every(file => /(\.(js|jsx|ts|tsx))$/i.test(file))
-    const phpChange = hasChange && changedFiles.every(file => /\.php$/i.test(file))
-    if (jsChange) { await runCLI({ json: false } as any, [process.cwd()]) }
-    if (phpChange) {
-      await composerDumpAutoload()
-        .then((dumpProcess: ChildProcessWithoutNullStreams) => dumpProcess.kill())
-        .then(runPhpUnit).then((testProcess: ChildProcessWithoutNullStreams) => testProcess.kill())
-    }
-    return resolve()
-  })
+    return new Promise(async (resolve) => {
+        const changed = compiler.watchFileSystem.watcher.mtimes
+        const changedFiles = Object.keys(changed)
+        const hasChange = Boolean(changedFiles.length)
+        const jsChange = hasChange && changedFiles.every(file => /(\.(js|jsx|ts|tsx))$/i.test(file))
+        const phpChange = hasChange && changedFiles.every(file => /\.php$/i.test(file))
+        if (jsChange) { await runCLI({ json: false } as any, [process.cwd()]) }
+        if (phpChange) {
+            await composerDumpAutoload()
+                .then((dumpProcess: ChildProcessWithoutNullStreams) => dumpProcess.kill())
+                .then(runPhpUnit).then((testProcess: ChildProcessWithoutNullStreams) => testProcess.kill())
+        }
+        return resolve()
+    })
 }
 
 /**
@@ -83,8 +83,8 @@ async function run(compiler: webpack.Compiler | any): Promise<any | void> {
  * @return {void}
  */
 function tap(this: IEnogweWebpackPlugin, compilation: webpack.compilation.Compilation): void {
-  const files = [...sync(['*.php', 'lib/**'], { deep: true }), ...sync('tests/**', { deep: true, ignore: ['**/*.snap'] })] as string[]
-  return compilation.hooks.optimize.tap(this.hook, () => files.map((file) => (compilation as any).compilationDependencies.add(file)))
+    const files = [...sync(['*.php', 'lib/**'], { deep: true }), ...sync('tests/**', { deep: true, ignore: ['**/*.snap'] })] as string[]
+    return compilation.hooks.optimize.tap(this.hook, () => files.map((file) => (compilation as any).compilationDependencies.add(file)))
 }
 
 /**
@@ -93,14 +93,14 @@ function tap(this: IEnogweWebpackPlugin, compilation: webpack.compilation.Compil
  * @returns {Promise<ChildProcessWithoutNullStreams>} the child process spawned from php unit
  */
 function runPhpUnit(): Promise<ChildProcessWithoutNullStreams> {
-  return new Promise((resolve, reject) => {
-    const covDir = './coverage/php'
-    const args = ['--bootstrap', './vendor/autoload.php', '--coverage-html', covDir, '--testdox', './tests/php']
-    const test = spawn('vendor/bin/phpunit', args)
-    test.stdout.on('data', data => console.info(data.toString()))
-    test.stdout.on('end', resolve.bind(null, test))
-    test.stdout.on('error', reject.bind(null, test))
-  })
+    return new Promise((resolve, reject) => {
+        const covDir = './coverage/php'
+        const args = ['--bootstrap', './vendor/autoload.php', '--coverage-html', covDir, '--testdox', './tests/php']
+        const test = spawn('vendor/bin/phpunit', args)
+        test.stdout.on('data', data => console.info(data.toString()))
+        test.stdout.on('end', resolve.bind(null, test))
+        test.stdout.on('error', reject.bind(null, test))
+    })
 }
 
 /**
@@ -109,25 +109,25 @@ function runPhpUnit(): Promise<ChildProcessWithoutNullStreams> {
  * @returns {Promise<ChildProcessWithoutNullStreams>}
  */
 function composerDumpAutoload(): Promise<ChildProcessWithoutNullStreams> {
-  return new Promise((resolve, reject) => {
-    const dump = spawn('composer', ['dump-autoload'])
-    dump.stdout.on('data', data => console.info(data.toString()))
-    dump.stdout.on('end', resolve.bind(null, dump))
-    dump.stdout.on('error', reject.bind(null, dump))
-  })
+    return new Promise((resolve, reject) => {
+        const dump = spawn('composer', ['dump-autoload'])
+        dump.stdout.on('data', data => console.info(data.toString()))
+        dump.stdout.on('end', resolve.bind(null, dump))
+        dump.stdout.on('error', reject.bind(null, dump))
+    })
 }
 
 /**
  * Enogwe Webpack Plugin
- * wepack 4.3+
+ * webpack 4.3+
  *
  * @export
  * @class JestPack
  */
 export default function EnogweWebpackPlugin(this: IEnogweWebpackPlugin) {
-  this.hook = 'EnogwePackPlugin'
-  this.copy = copy.bind(this)
-  this.run = run.bind(this)
-  this.tap = tap.bind(this)
-  this.apply = apply.bind(this)
+    this.hook = 'EnogwePackPlugin'
+    this.copy = copy.bind(this)
+    this.run = run.bind(this)
+    this.tap = tap.bind(this)
+    this.apply = apply.bind(this)
 }
