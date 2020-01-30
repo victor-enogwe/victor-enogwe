@@ -21,7 +21,33 @@
  * @link     https://github.com/victor-enogwe/enogwe
  */
 
-require_once __DIR__ . '/vendor/autoload.php';
+use Enogwe\Enogwe;
+use Timber\Timber;
 
-//  Exit if accessed directly.
-defined('ABSPATH') || exit;
+// Exit if accessed directly.
+defined( 'WPINC' ) || exit;
+
+$composer_autoload = __DIR__ . '/vendor/autoload.php';
+
+if ( file_exists( $composer_autoload ) ) {
+	require_once $composer_autoload;
+	$timber = new Timber();
+}
+
+if ( ! class_exists( 'Timber' ) ) {
+	add_action(
+		'admin_notices',
+		function() {
+			echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . esc_url( admin_url( 'plugins.php#timber' ) ) . '">' . esc_url( admin_url( 'plugins.php' ) ) . '</a></p></div>';
+		}
+	);
+	add_filter(
+		'template_include',
+		function( $template ) {
+			return get_stylesheet_directory() . '/templates/no-timber.html';
+		}
+	);
+	return;
+} else {
+	new Enogwe();
+}

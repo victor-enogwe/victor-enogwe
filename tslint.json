@@ -1,7 +1,8 @@
 {
-    "extends": ["tslint-config-standard",  "tslint-react"],
-    "rulesDirectory": [
-        "node_modules/codelyzer"
+    "extends": [
+        "tslint-config-standard",
+        "tslint-etc",
+        "tslint-react"
     ],
     "rules": {
         "arrow-return-shorthand": true,
@@ -23,9 +24,14 @@
             "rxjs/operators"
         ],
         "import-spacing": true,
+        "ter-indent": [
+            true,
+            4
+        ],
         "indent": [
             true,
-            "spaces"
+            "spaces",
+            4
         ],
         "interface-over-type-literal": true,
         "label-position": true,
@@ -38,10 +44,10 @@
             true,
             {
                 "order": [
-                "static-field",
-                "instance-field",
-                "static-method",
-                "instance-method"
+                    "static-field",
+                    "instance-field",
+                    "static-method",
+                    "instance-method"
                 ]
             }
         ],
@@ -50,7 +56,7 @@
         "no-console": [
             true,
             "debug",
-            "info",
+            "log",
             "time",
             "timeEnd",
             "trace"
@@ -74,9 +80,19 @@
         "no-trailing-whitespace": true,
         "no-unnecessary-initializer": true,
         "no-unused-expression": true,
+        "no-duplicate-imports": true,
+        "semicolon": false,
         "no-use-before-declare": true,
+        "no-duplicate-variable": [
+            true,
+            "check-parameters"
+        ],
         "no-var-keyword": true,
         "object-literal-sort-keys": false,
+        "object-literal-key-quotes": [
+            true,
+            "as-needed"
+        ],
         "one-line": [
             true,
             "check-open-brace",
@@ -85,10 +101,6 @@
             "check-whitespace"
         ],
         "prefer-const": true,
-        "quotemark": [
-            true,
-            "single"
-        ],
         "radix": true,
         "triple-equals": [
             true,
@@ -114,28 +126,53 @@
             "check-separator",
             "check-type"
         ],
-        "directive-selector": [
+        "throw-error": {
+            "severity": "error"
+        },
+        "no-const-enum": {
+            "options": [
+                {
+                    "allowLocal": true
+                }
+            ],
+            "severity": "error"
+        },
+        "no-unused-declaration": {
+            "options": [
+                {
+                    "declarations": true,
+                    "imports": true
+                }
+            ],
+            "severity": "error"
+        },
+        "no-unsafe-callback-scope": true,
+        "no-assign-mutated-array": true,
+        "completed-docs": [
             true,
-            "attribute",
-            "chizell",
-            "camelCase"
+            "enums",
+            "functions",
+            "methods"
         ],
-        "component-selector": [
+        "prefer-for-of": true,
+        "only-arrow-functions": [
             true,
-            "element",
-            "chizell",
-            "kebab-case"
+            "allow-named-functions"
         ],
-        "no-output-on-prefix": true,
-        "use-input-property-decorator": true,
-        "use-output-property-decorator": true,
-        "use-host-property-decorator": true,
-        "no-input-rename": true,
-        "no-output-rename": true,
-        "use-life-cycle-interface": true,
-        "use-pipe-transform-interface": true,
-        "component-class-suffix": true,
-        "directive-class-suffix": true
+        "prefer-switch": true,
+        "align": [
+            true
+        ],
+        "no-unnecessary-type-assertion": true,
+        "no-unnecessary-callback-wrapper": true,
+        "quotemark": [
+            true,
+            "single",
+            "jsx-double",
+            "avoid-escape",
+            "avoid-template"
+        ]
     },
+    "jsRules": true,
     "linterOptions": {}
 }

@@ -2,23 +2,31 @@
     "name": "victorenogwe/enogwe",
     "description": "enogwe wordpress theme",
     "type": "project",
-	"license": "GNU 3.0",
-	"authors": [
-		{
-			"name": "victor-enogwe",
-			"email": "victor.enogwe@gmail.com"
-		}
-	],
-    "require": {},
+    "license": "GNU 3.0",
+    "authors": [
+        {
+            "name": "victor-enogwe",
+            "email": "victor.enogwe@gmail.com"
+        }
+    ],
+    "require": {
+        "limenius/react-renderer": "^4.0",
+        "timber/timber": "^1.13"
+    },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.4"
-	},
-	"config": {
+        "10up/wp_mock": "0.4.2",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+        "phpunit/phpunit": "^8",
+        "squizlabs/php_codesniffer": "^3.4",
+        "wp-coding-standards/wpcs": "^2.2"
+    },
+    "config": {
         "sort-packages": true
     },
     "autoload": {
         "psr-4": {
-            "Enogwe\\": "/lib"
+            "Enogwe\\": "lib/",
+            "Enogwe\\Test\\": "test/pgp/"
         }
     }
 }

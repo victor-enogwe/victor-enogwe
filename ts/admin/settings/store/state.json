@@ -1,0 +1,21 @@
+{
+    "maintenance": {
+        "active":  false,
+        "roles": [],
+        "capabilities": [],
+        "duration": {
+            "from": null,
+            "to": null
+        }
+    },
+    "sidebar": {
+        "menuExpanded": "false",
+        "activeSidebarMenu": "Assets"
+    },
+    "api": {
+       "settings": "loading"
+    },
+    "assets": {
+
+    }
+}
