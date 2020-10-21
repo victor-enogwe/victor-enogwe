@@ -1,4 +1,4 @@
-[![Victor Enogwe Header](https://github.com/victor-enogwe/victor-enogwe/blob/development/assets/frontend/img/header.jpg)
+[![Victor Enogwe Header](https://github.com/victor-enogwe/victor-enogwe/blob/development/assets/frontend/img/header.jpg)](https://victorenogwe.me)
 
 # Victor Enogwe [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
