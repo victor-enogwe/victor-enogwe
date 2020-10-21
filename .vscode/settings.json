@@ -1,0 +1,23 @@
+{
+    "tslint.jsEnable": true,
+    "phpcs.enable": true,
+    "phpcbf.enable": true,
+    "phpcbf.onsave": true,
+    "phpcbf.debug": true,
+    "phpcs.standard": "WordPress-Extra",
+    "phpcbf.documentFormattingProvider": true,
+    "editor.wordWrapColumn": 140,
+    "editor.tabSize": 4,
+    "cSpell.ignoreWords": [
+        "absint",
+        "circleci",
+        "cpanel",
+        "datetimeformat",
+        "gmtdate",
+        "key",
+        "message",
+        "post",
+        "sanitize",
+        "shrinkwrap"
+    ]
+}
