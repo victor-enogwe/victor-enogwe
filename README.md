@@ -11,4 +11,4 @@ Github profile/theme built with Wordpress for victorenogwe.me
 - I love to follow best practices
 - I love solving problems by programming
 - I can also work in a super-fast paced startup environment, where fast product delivery, performance, maintainability, stakeholder management, and effective time utilization is key.
-- I love people, food and visiting new places - nothing makes me happier than volunteering and using my experience for a good cause.
+- I love people, food, a good book/movie/story and visiting new places - nothing makes me happier than volunteering and using my experience for a good cause.
