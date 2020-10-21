@@ -1,3 +1,5 @@
+[![victorenogwe.me](#)](https://victorenogwe.me)
+
 # Victor Enogwe [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 Github profile/theme built with Wordpress for victorenogwe.me 
@@ -12,3 +14,5 @@ Github profile/theme built with Wordpress for victorenogwe.me
 - I love solving problems by programming
 - I can also work in a super-fast paced startup environment, where fast product delivery, performance, maintainability, stakeholder management, and effective time utilization is key.
 - I love people, food, a good book/movie/story and visiting new places - nothing makes me happier than volunteering and using my experience for a good cause.
+
+![Github Stats](https://github-readme-stats.vercel.app/api?username=victor-enogwe&show_icons=true&theme=default)
