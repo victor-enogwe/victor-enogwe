@@ -2,7 +2,7 @@
 
 # Victor Enogwe
 
-<span style="background-color: #FFFF00">_*Quality is the result of a million selfless acts of care - not just of any great method that descends from the heavens!*_</span>
+<span style="background-color: #FFFF00">_*Quality is the result of a million selfless acts of care - not just of any great method that descends from the heavens! - Robert C. Martin*_</span>
 
 ### Here is a summary of me below
 
